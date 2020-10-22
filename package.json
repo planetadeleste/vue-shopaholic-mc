@@ -8,7 +8,10 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@bit/planetadeleste.shopaholic-mc.base": "^1.0.2",
+    "@bit/planetadeleste.shopaholic-mc.shopaholic": "^1.0.1",
     "@bit/planetadeleste.shopaholic-mc.types.vue-mc": "^1.0.0",
+    "@bit/planetadeleste.shopaholic.types.base": "^0.0.2",
     "@qiwi/mixin": "^1.2.4",
     "@types/lodash": "^4.14.162",
     "core-js": "^3.6.5",

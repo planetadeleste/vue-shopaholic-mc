@@ -857,12 +857,53 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@bit/planetadeleste.shopaholic-mc.types.vue-mc@^1.0.0":
+"@bit/planetadeleste.shopaholic-mc.base@1.0.3":
+  version "1.0.3"
+  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.base/-/planetadeleste.shopaholic-mc.base-1.0.3.tgz#1cd43cd4722e0fa27bf75ece1bfb9ff9051c7ecb"
+  integrity sha1-HNQ81HIuD6J7917OG/uf+QUcfss=
+  dependencies:
+    "@bit/planetadeleste.shopaholic-mc.types.vue-mc" "1.0.2"
+    "@qiwi/mixin" "^1.2.4"
+    "@types/lodash" "^4.14.162"
+    lodash "^4.17.20"
+    vue-mc "^0.6.0"
+    vuex-module-decorators "^1.0.1"
+
+"@bit/planetadeleste.shopaholic-mc.base@^1.0.2":
+  version "1.0.2"
+  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.base/-/planetadeleste.shopaholic-mc.base-1.0.2.tgz#4ce5733ed645961d81105216a87af383ed7a1e18"
+  integrity sha1-TOVzPtZFlh2BEFIWqHrzg+16Hhg=
+  dependencies:
+    "@bit/planetadeleste.shopaholic-mc.types.vue-mc" "1.0.2"
+    "@qiwi/mixin" "^1.2.4"
+    "@types/lodash" "^4.14.162"
+    lodash "^4.17.20"
+    vue-mc "^0.6.0"
+    vuex-module-decorators "^1.0.1"
+
+"@bit/planetadeleste.shopaholic-mc.shopaholic@^1.0.1":
   version "1.0.1"
-  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.types.vue-mc/-/planetadeleste.shopaholic-mc.types.vue-mc-1.0.1.tgz#345e2ec2823afada462947d579c2c390b3961551"
-  integrity sha1-NF4uwoI6+tpGKUfVecLDkLOWFVE=
+  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.shopaholic/-/planetadeleste.shopaholic-mc.shopaholic-1.0.1.tgz#bb241cb67922407f08702c7770235a5148e865a0"
+  integrity sha1-uyQctnkiQH8IcCx3cCNaUUjoZaA=
+  dependencies:
+    "@bit/planetadeleste.shopaholic-mc.base" "1.0.3"
+    "@bit/planetadeleste.shopaholic-mc.types.vue-mc" "1.0.2"
+    "@bit/planetadeleste.shopaholic.types.base" "0.0.2"
+    "@types/lodash" "^4.14.162"
+    lodash "^4.17.20"
+    vue-mc "^0.6.0"
+
+"@bit/planetadeleste.shopaholic-mc.types.vue-mc@1.0.2", "@bit/planetadeleste.shopaholic-mc.types.vue-mc@^1.0.0":
+  version "1.0.2"
+  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.types.vue-mc/-/planetadeleste.shopaholic-mc.types.vue-mc-1.0.2.tgz#f4cdd20c8dfcc3799b1d0ba2a91e27da2c4575c3"
+  integrity sha1-9M3SDI38w3mbHQuiqR4n2ixFdcM=
   dependencies:
     axios "0.19.0"
+
+"@bit/planetadeleste.shopaholic.types.base@0.0.2", "@bit/planetadeleste.shopaholic.types.base@^0.0.2":
+  version "0.0.2"
+  resolved "https://node.bit.dev/planetadeleste.shopaholic.types.base/-/planetadeleste.shopaholic.types.base-0.0.2.tgz#6ff2a01693733322b85a3475a05f234193a1e6af"
+  integrity sha1-b/KgFpNzMyK4WjR1oF8jQZOh5q8=
 
 "@hapi/address@2.x.x":
   version "2.1.4"
@@ -1098,9 +1139,9 @@
   integrity sha1-aaI6OtKcrwCX8G7aWbNh7i8GOfY=
 
 "@types/node@*":
-  version "14.11.10"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.11.10.tgz#8c102aba13bf5253f35146affbf8b26275069bef"
-  integrity sha512-yV1nWZPlMFpoXyoknm4S56y2nlTAuFYaJuQtYRAOU7xA/FJ9RY0Xm7QOkaYMMmr8ESdHIuUb6oQgR/0+2NqlyA==
+  version "14.14.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.0.tgz#f1091b6ad5de18e8e91bdbd43ec63f13de372538"
+  integrity sha512-BfbIHP9IapdupGhq/hc+jT5dyiBVZ2DdeC5WwJWQWDb0GijQlzUFAeIQn/2GtvZcd2HVUU7An8felIICFTC2qg==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -1128,12 +1169,12 @@
   integrity sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
 
 "@types/serve-static@*":
-  version "1.13.5"
-  resolved "https://registry.yarnpkg.com/@types/serve-static/-/serve-static-1.13.5.tgz#3d25d941a18415d3ab092def846e135a08bbcf53"
-  integrity sha512-6M64P58N+OXjU432WoLLBQxbA0LRGBCRm7aAGQJ+SMC1IMl0dgRVi9EFfoDcS2a7Xogygk/eGN94CfwU9UF7UQ==
+  version "1.13.6"
+  resolved "https://registry.yarnpkg.com/@types/serve-static/-/serve-static-1.13.6.tgz#866b1b8dec41c36e28c7be40ac725b88be43c5c1"
+  integrity sha512-nuRJmv7jW7VmCVTn+IgYDkkbbDGyIINOeu/G0d74X3lm6E5KfMeQPJhxIt1ayQeQB3cSxvYs1RA/wipYoFB4EA==
   dependencies:
-    "@types/express-serve-static-core" "*"
     "@types/mime" "*"
+    "@types/node" "*"
 
 "@types/source-list-map@*":
   version "0.1.2"
@@ -1291,9 +1332,9 @@
     semver "^6.1.0"
 
 "@vue/babel-preset-jsx@^1.1.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@vue/babel-preset-jsx/-/babel-preset-jsx-1.2.2.tgz#4a4f934b04d0402913ae1bbd357cf51de2e7dbcb"
-  integrity sha512-+PQKZwoh98oHnRnifT5XD4Ybkwe0McDGkcZcFQRfynL1SFg5zfGRscntZ8Lt4QmYs5NiYc2WOQbyrolUlLZedQ==
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@vue/babel-preset-jsx/-/babel-preset-jsx-1.2.3.tgz#355f59206b691a558bc95e4dbd8e59cd27dd76cb"
+  integrity sha512-yMPoPFH6kiNFAhJknjLKAre7JQNWRPjH1K9EyzTPi/J5T5oDC8sEumSjWI6lBQxcSaBboXpQp92mvxZdXCfiFw==
   dependencies:
     "@vue/babel-helper-vue-jsx-merge-props" "^1.2.1"
     "@vue/babel-plugin-transform-vue-jsx" "^1.2.1"
@@ -1301,8 +1342,8 @@
     "@vue/babel-sugar-composition-api-render-instance" "^1.2.1"
     "@vue/babel-sugar-functional-vue" "^1.2.2"
     "@vue/babel-sugar-inject-h" "^1.2.2"
-    "@vue/babel-sugar-v-model" "^1.2.1"
-    "@vue/babel-sugar-v-on" "^1.2.1"
+    "@vue/babel-sugar-v-model" "^1.2.3"
+    "@vue/babel-sugar-v-on" "^1.2.3"
 
 "@vue/babel-sugar-composition-api-inject-h@^1.2.1":
   version "1.2.1"
@@ -1332,10 +1373,10 @@
   dependencies:
     "@babel/plugin-syntax-jsx" "^7.2.0"
 
-"@vue/babel-sugar-v-model@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@vue/babel-sugar-v-model/-/babel-sugar-v-model-1.2.1.tgz#b658548ffc611895a5165094c7e3f1940f3858f4"
-  integrity sha512-6kTx+hZVJ6dclAwWXSvfnv4XlkzCzKthQ/xlnypFW8+9uhy3E5ehNiAaHfr83R8+7d3DlvbZrQ9xgbZc1quuJg==
+"@vue/babel-sugar-v-model@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@vue/babel-sugar-v-model/-/babel-sugar-v-model-1.2.3.tgz#fa1f29ba51ebf0aa1a6c35fa66d539bc459a18f2"
+  integrity sha512-A2jxx87mySr/ulAsSSyYE8un6SIH0NWHiLaCWpodPCVOlQVODCaSpiR4+IMsmBr73haG+oeCuSvMOM+ttWUqRQ==
   dependencies:
     "@babel/plugin-syntax-jsx" "^7.2.0"
     "@vue/babel-helper-vue-jsx-merge-props" "^1.2.1"
@@ -1344,10 +1385,10 @@
     html-tags "^2.0.0"
     svg-tags "^1.0.0"
 
-"@vue/babel-sugar-v-on@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@vue/babel-sugar-v-on/-/babel-sugar-v-on-1.2.1.tgz#5f00839e8ad9fc8f42dce2bea89b6fd5daf5bd72"
-  integrity sha512-rQhM52dC/vWxgMmi8ZY5MwudOb9sWrqN4gffbPDV44TNqyd2j1+PmW2qLR0QfcDsAccR5U+gcguHc3qhLSrXNw==
+"@vue/babel-sugar-v-on@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@vue/babel-sugar-v-on/-/babel-sugar-v-on-1.2.3.tgz#342367178586a69f392f04bfba32021d02913ada"
+  integrity sha512-kt12VJdz/37D3N3eglBywV8GStKNUhNrsxChXIV+o0MwVXORYuhDTHJRKPgLJRb/EY3vM2aRFQdxJBp9CLikjw==
   dependencies:
     "@babel/plugin-syntax-jsx" "^7.2.0"
     "@vue/babel-plugin-transform-vue-jsx" "^1.2.1"
@@ -5182,6 +5223,13 @@ is-color-stop@^1.0.0:
     rgb-regex "^1.0.1"
     rgba-regex "^1.0.0"
 
+is-core-module@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/is-core-module/-/is-core-module-2.0.0.tgz#58531b70aed1db7c0e8d4eb1a0a2d1ddd64bd12d"
+  integrity sha512-jq1AH6C8MuteOoBPwkxHafmByhL9j5q4OaPGdbuD+ZtQJVzH+i6E3BJDQcBA09k57i2Hh2yQbEG8yObZ0jdlWw==
+  dependencies:
+    has "^1.0.3"
+
 is-data-descriptor@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/is-data-descriptor/-/is-data-descriptor-0.1.4.tgz#0b5ee648388e2c860282e793f1856fec3f301b56"
@@ -6295,9 +6343,9 @@ node-libs-browser@^2.2.1:
     vm-browserify "^1.0.1"
 
 node-releases@^1.1.61:
-  version "1.1.63"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.63.tgz#db6dbb388544c31e888216304e8fd170efee3ff5"
-  integrity sha512-ukW3iCfQaoxJkSPN+iK7KznTeqDGVJatAEuXsJERYHa9tn/KaT5lBdIyxQjLEVTzSkyjJEuQ17/vaEjrOauDkg==
+  version "1.1.64"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.64.tgz#71b4ae988e9b1dd7c1ffce58dd9e561752dfebc5"
+  integrity sha512-Iec8O9166/x2HRMJyLLLWkd0sFFLrFNy+Xf+JQfSQsdBJzPcHpNl3JQ9gD4j+aJxmCa25jNsIbM4bmACtSbkSg==
 
 normalize-package-data@^2.5.0:
   version "2.5.0"
@@ -7627,10 +7675,11 @@ resolve-url@^0.2.1:
   integrity sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=
 
 resolve@^1.10.0, resolve@^1.3.2, resolve@^1.8.1:
-  version "1.17.0"
-  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.17.0.tgz#b25941b54968231cc2d1bb76a79cb7f2c0bf8444"
-  integrity sha512-ic+7JYiV8Vi2yzQGFWOkiZD5Z9z7O2Zhm9XMaTxdJExKasieFCr+yXZ/WmXsckHiKl12ar0y6XiXDx3m4RHn1w==
+  version "1.18.1"
+  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.18.1.tgz#018fcb2c5b207d2a6424aee361c5a266da8f4130"
+  integrity sha512-lDfCPaMKfOJXjy0dPayzPdF1phampNWr3qFCjAu+rw/qbQmr5jWH5xN2hwh9QKfw9E5v4hwV7A+jrCmL8yjjqA==
   dependencies:
+    is-core-module "^2.0.0"
     path-parse "^1.0.6"
 
 restore-cursor@^2.0.0:
