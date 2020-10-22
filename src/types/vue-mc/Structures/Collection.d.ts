@@ -1,6 +1,9 @@
 import Base, { Options, RequestOperation } from "./Base";
 import Model, { ValidationResultErrorFinalResult } from "./Model";
 import Response from "../HTTP/Response";
+
+type BaseModel = <T extends Model>() => T;
+
 /**
  * Base collection class.
  */

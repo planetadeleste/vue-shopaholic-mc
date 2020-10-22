@@ -54,7 +54,7 @@ declare class Model extends Base {
    *
    * @returns {Model}
    */
-  clone(): Model;
+  clone<T extends Model>(): T;
   /**
    * Prepare certain methods to only be called once. These are methods that
    * are expected to return the same data every time.

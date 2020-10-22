@@ -52,7 +52,8 @@ export default class Profile extends Model {
   options() {
     return {
       methods: {
-        avatar: "GET"
+        avatar: "GET",
+        login: "POST"
       }
     };
   }
@@ -63,7 +64,8 @@ export default class Profile extends Model {
       create: "profile.store",
       update: "profile.update",
       delete: "profile.destroy",
-      avatar: "profile.avatar"
+      avatar: "profile.avatar",
+      login: "auth.login"
     };
   }
 
@@ -74,6 +76,24 @@ export default class Profile extends Model {
     const url = this.getURL(route, params);
     const data = {};
 
-    return this.createRequest({ method, url, data }).send();
+    return await this.createRequest({ method, url, data }).send();
+  }
+
+  async login(login: string, password: string) {
+    const method = this.getOption("methods.login");
+    const route = this.getRoute("login");
+    const params = this.getRouteParameters();
+    const url = this.getURL(route, params);
+    const data = { email: login, password: password };
+
+    const response: Response = await this.createRequest({
+      method,
+      url,
+      data
+    }).send();
+
+    console.log(response);
+
+    return response;
   }
 }
