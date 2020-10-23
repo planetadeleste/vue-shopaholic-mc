@@ -1,7 +1,8 @@
 import Vue from "vue";
 import Base from "./Base";
 import { Model as BaseModel } from "vue-mc";
-import { applyMixinsAsSubclass } from "@qiwi/mixin";
+import { AxiosRequestConfig } from "axios";
+import Request from "./Request";
 import _ from "lodash";
 
 type Constructor<T> = new (...args: any[]) => T;
@@ -13,10 +14,19 @@ export interface RelationConfig {
   aliases?: string[];
 }
 
-export default class Model extends applyMixinsAsSubclass(BaseModel, Base) {
-  _relations!: Record<string, Constructor<Model>>;
+export default class Model extends BaseModel {
+  private _relations!: Record<string, Constructor<Model>>;
+  private _baseClass!: Base;
+  private _base() {
+    if (!this._baseClass) {
+      this._baseClass = new Base();
+    }
+
+    return this._baseClass;
+  }
 
   boot() {
+    this._base();
     Vue.set(this, "_relations", {});
     this.assignRelations();
   }
@@ -76,5 +86,33 @@ export default class Model extends applyMixinsAsSubclass(BaseModel, Base) {
     _.each(this.definedRelations(), (config, name) => {
       this.registerRelation(name, config);
     });
+  }
+
+  getRouteResolver() {
+    return Base.$resolve;
+  }
+
+  /**
+   * Send an alert message to Flash store service
+   *
+   * @param {string} sMessage Alert Message
+   * @param {string} sType Alert type (error, info, success)
+   */
+  alert(sMessage: string, sType = "error"): string {
+    if (!Base.$flashModule) {
+      return sMessage;
+    }
+
+    _.invoke(Base.$flashModule, sType, sMessage);
+    return sMessage;
+  }
+
+  /**
+   * @returns {Request} A new `Request` using the given configuration.
+   */
+  createRequest(config: AxiosRequestConfig): Request {
+    const obRequest = new Request(config);
+    obRequest.$http = Base.$http;
+    return obRequest;
   }
 }

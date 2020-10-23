@@ -1,12 +1,13 @@
 import { RouteResolver } from "@bit/planetadeleste.shopaholic-mc.types.vue-mc/Structures/Base";
 import { VuexModule } from "vuex-module-decorators";
-import _ from "lodash";
+import { AxiosStatic } from "axios";
 
 export default class Base {
   static $resolve: RouteResolver;
   static $flashModule: VuexModule;
   static $loadingModule: VuexModule;
   static $authModule: VuexModule;
+  static $http: AxiosStatic;
 
   get flashModule() {
     return Base.$flashModule;
@@ -18,18 +19,5 @@ export default class Base {
 
   get authModule() {
     return Base.$authModule;
-  }
-
-  getRouteResolver() {
-    return Base.$resolve;
-  }
-
-  alert(sMessage: string, sType = "error"): string {
-    if (!this.flashModule) {
-      return sMessage;
-    }
-
-    _.invoke(this.flashModule, sType, sMessage);
-    return sMessage;
   }
 }

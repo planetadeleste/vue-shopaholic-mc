@@ -1,8 +1,8 @@
 import { Model } from "@bit/planetadeleste.shopaholic-mc.base";
-import Response from "@bit/planetadeleste.shopaholic-mc.types.vue-mc/HTTP/Response";
+import { Response } from "vue-mc";
 import _ from "lodash";
-import UserAddress from "./UserAddress";
 import { required, string, email } from "vue-mc/validation";
+import UserAddress from "./UserAddress";
 
 export default class Profile extends Model {
   id!: number;
@@ -19,26 +19,21 @@ export default class Profile extends Model {
   address?: UserAddress[];
   role?: string;
 
-  get fullName() {
-    return _.chain([this.name, this.middle_name, this.last_name])
-      .compact()
-      .join(" ")
-      .value();
-  }
-
   defaults() {
-    return {
-      id: null,
-      name: null,
-      email: null
-    };
+    return {};
   }
 
   mutations() {
     return {
       id: (id: string) => _.toNumber(id) || null,
       name: [_.toString, _.trim],
-      email: [_.toString, _.trim]
+      email: [_.toString, _.trim],
+      fullName: () => {
+        return _.chain([this.name, this.middle_name, this.last_name])
+          .compact()
+          .join(" ")
+          .value();
+      }
     };
   }
 
@@ -53,7 +48,8 @@ export default class Profile extends Model {
     return {
       methods: {
         avatar: "GET",
-        login: "POST"
+        login: "POST",
+        logout: "POST"
       }
     };
   }
@@ -65,7 +61,8 @@ export default class Profile extends Model {
       update: "profile.update",
       delete: "profile.destroy",
       avatar: "profile.avatar",
-      login: "auth.login"
+      login: "auth.login",
+      logout: "auth.invalidate"
     };
   }
 
@@ -86,14 +83,16 @@ export default class Profile extends Model {
     const url = this.getURL(route, params);
     const data = { email: login, password: password };
 
-    const response: Response = await this.createRequest({
-      method,
-      url,
-      data
-    }).send();
+    return await this.createRequest({ method, url, data }).send();
+  }
 
-    console.log(response);
+  async logout() {
+    const method = this.getOption("methods.logout");
+    const route = this.getRoute("logout");
+    const params = this.getRouteParameters();
+    const url = this.getURL(route, params);
+    const data = {};
 
-    return response;
+    return await this.createRequest({ method, url, data }).send();
   }
 }

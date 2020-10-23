@@ -1,20 +1,58 @@
-import { Collection as BaseCollection } from "vue-mc";
-import Response from "vue-mc";
+import { Collection as BaseCollection, Model, Response } from "vue-mc";
+import { AxiosRequestConfig } from "axios";
+import Request from "./Request";
 import _ from "lodash";
-import { applyMixinsAsSubclass } from "@qiwi/mixin";
 import Base from "./Base";
 
-export default class Collection extends applyMixinsAsSubclass(
-  BaseCollection,
-  Base
-) {
+export default class Collection<A extends Model = Model> extends BaseCollection<
+  A
+> {
+  private _baseClass!: Base;
+  private _base() {
+    if (!this._baseClass) {
+      this._baseClass = new Base();
+    }
+
+    return this._baseClass;
+  }
+
   boot() {
+    this._base();
+
     this.on("fetch", (obEvent: Record<string, any>) => {
       const sError = _.get(obEvent, "error");
       if (sError) {
         this.alert(sError);
       }
     });
+  }
+
+  getRouteResolver() {
+    return Base.$resolve;
+  }
+
+  /**
+   * Send an alert message to Flash store service
+   *
+   * @param {string} sMessage Alert Message
+   * @param {string} sType Alert type (error, info, success)
+   */
+  alert(sMessage: string, sType = "error"): string {
+    if (!Base.$flashModule) {
+      return sMessage;
+    }
+
+    _.invoke(Base.$flashModule, sType, sMessage);
+    return sMessage;
+  }
+
+  /**
+   * @returns {Request} A new `Request` using the given configuration.
+   */
+  createRequest(config: AxiosRequestConfig): Request {
+    const obRequest = new Request(config);
+    obRequest.$http = Base.$http;
+    return obRequest;
   }
 
   getModelsFromResponse(response: Response): any {

@@ -1,7 +1,7 @@
 import { Collection } from "@bit/planetadeleste.shopaholic-mc.base";
 import State from "../models/State";
 
-export default class States extends Collection {
+export default class States extends Collection<State> {
   model() {
     return State;
   }

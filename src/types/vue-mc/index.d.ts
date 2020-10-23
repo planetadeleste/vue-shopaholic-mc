@@ -24,12 +24,14 @@ import Request from "./HTTP/Request";
 import RequestError from "./Errors/RequestError";
 import ValidationError from "./Errors/ValidationError";
 
-export default Response;
-export default ResponseError;
-export default Request;
-export default RequestError;
-export default ProxyResponse;
-export default ValidationError;
+export {
+  Response,
+  ResponseError,
+  Request,
+  RequestError,
+  ProxyResponse,
+  ValidationError
+};
 
 export * from "./HTTP/BaseResponse";
 export * from "./Validation";

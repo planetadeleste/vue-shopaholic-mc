@@ -1,7 +1,7 @@
 import { Collection } from "@bit/planetadeleste.shopaholic-mc.base";
 import Product from "../models/Product";
 
-export default class Products extends Collection {
+export default class Products extends Collection<Product> {
   model() {
     return Product;
   }

@@ -13,19 +13,23 @@ declare module "vue-mc" {
   } from "@bit/planetadeleste.shopaholic-mc.types.vue-mc";
   export { Predicate } from "@bit/planetadeleste.shopaholic-mc.types.vue-mc";
 
-  import Response from "@bit/planetadeleste.shopaholic-mc.types.vue-mc";
-  import ProxyResponse from "@bit/planetadeleste.shopaholic-mc.types.vue-mc";
-  import ResponseError from "@bit/planetadeleste.shopaholic-mc.types.vue-mc";
-  import Request from "@bit/planetadeleste.shopaholic-mc.types.vue-mc";
-  import RequestError from "@bit/planetadeleste.shopaholic-mc.types.vue-mc";
-  import ValidationError from "@bit/planetadeleste.shopaholic-mc.types.vue-mc";
+  import {
+    Response,
+    Request,
+    ResponseError,
+    RequestError,
+    ProxyResponse,
+    ValidationError
+  } from "@bit/planetadeleste.shopaholic-mc.types.vue-mc";
 
-  export default Response;
-  export default ResponseError;
-  export default Request;
-  export default RequestError;
-  export default ProxyResponse;
-  export default ValidationError;
+  export {
+    Response,
+    Request,
+    ResponseError,
+    RequestError,
+    ProxyResponse,
+    ValidationError
+  };
 
   export * from "@bit/planetadeleste.shopaholic-mc.types.vue-mc/HTTP/BaseResponse";
   export * from "@bit/planetadeleste.shopaholic-mc.types.vue-mc/Validation/locale";

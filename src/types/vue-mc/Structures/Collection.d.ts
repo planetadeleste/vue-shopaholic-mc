@@ -2,13 +2,13 @@ import Base, { Options, RequestOperation } from "./Base";
 import Model, { ValidationResultErrorFinalResult } from "./Model";
 import Response from "../HTTP/Response";
 
-type BaseModel = <T extends Model>() => T;
+type ConstructorOf<A> = new (...args: any[]) => A;
 
 /**
  * Base collection class.
  */
-declare class Collection extends Base {
-  models: Model[];
+declare class Collection<A extends Model = Model> extends Base {
+  models: A[];
   readonly loading: boolean;
   readonly saving: boolean;
   readonly deleting: boolean;
@@ -27,7 +27,7 @@ declare class Collection extends Base {
    * @param  {Object} [options]   Extra options to set on this collection.
    */
   constructor(
-    models?: Model[],
+    models?: A[],
     options?: Options,
     attributes?: Record<string, any>
   );
@@ -39,9 +39,9 @@ declare class Collection extends Base {
    */
   clone(): Collection;
   /**
-   * @return {Model} The class/constructor for this collection's model type.
+   * @return {A} The class/constructor for this collection's model type.
    */
-  model(): typeof Model;
+  model(): ConstructorOf<A>;
   /**
    * @return {Object} Default attributes
    */
@@ -62,9 +62,9 @@ declare class Collection extends Base {
    */
   getAttributes(): Record<string, any>;
   /**
-   * @return {Model[]}
+   * @return {A[]}
    */
-  getModels(): Model[];
+  getModels(): A[];
   /**
    * Returns the default options for this model.
    *
@@ -115,7 +115,7 @@ declare class Collection extends Base {
    * @returns {Object} A native representation of this collection that will
    *                   determine the contents of JSON.stringify(collection).
    */
-  toJSON(): Model[];
+  toJSON(): A[];
   /**
    * @returns {Promise}
    */
@@ -125,86 +125,84 @@ declare class Collection extends Base {
    *
    * @param {Object} attributes
    *
-   * @returns {Model} A new instance of this collection's model.
+   * @returns {A} A new instance of this collection's model.
    */
   createModel(attributes: Record<string, any>): Record<string, any>;
   /**
    * Removes a model from the model registry.
    *
-   * @param {Model} model
+   * @param {A} model
    */
-  removeModelFromRegistry(model: Model): void;
+  removeModelFromRegistry(model: A): void;
   /**
    * @return {Boolean} true if this collection has the model in its registry.
    */
-  hasModelInRegistry(model: Model): boolean;
+  hasModelInRegistry(model: A): boolean;
   /**
    * Adds a model from the model registry.
    *
-   * @param {Model} model
+   * @param {A} model
    */
-  addModelToRegistry(model: Model): void;
+  addModelToRegistry(model: A): void;
   /**
    * Called when a model has been added to this collection.
    *
-   * @param {Model} model
+   * @param {A} model
    */
-  onAdd(model: Model): void;
+  onAdd(model: A): void;
   /**
    * Adds a model to this collection.
    *
    * This method returns a single model if only one was given, but will return
    * an array of all added models if an array was given.
    *
-   * @param {Model|Array|Object} model Adds a model instance or plain object,
+   * @param {A|Array|Object} model Adds a model instance or plain object,
    *                                   or an array of either, to this collection.
    *                                   A model instance will be created and
    *                                   returned if passed a plain object.
    *
-   * @returns {Model|Array} The added model or array of added models.
+   * @returns {A|Array} The added model or array of added models.
    */
-  add(model: Model[]): Model[];
-  add(model?: Model | Partial<Model> | Record<string, any>): Model;
+  add(model: A[]): A[];
+  add(model?: A | Partial<A> | Record<string, any>): A;
   /**
    * Called when a model has been removed from this collection.
    *
-   * @param {Model} model
+   * @param {A} model
    */
-  onRemove(model: Model): void;
+  onRemove(model: A): void;
   /**
      * Removes a model at a given index.
      *
      * @param  {number} index
 
-     * @returns {Model} The model that was removed, or `undefined` if invalid.
+     * @returns {A} The model that was removed, or `undefined` if invalid.
      * @throws  {Error} If a model could not be found at the given index.
      */
-  _removeModelAtIndex(index: number): Model | undefined;
+  _removeModelAtIndex(index: number): A | undefined;
   /**
    * Removes a `Model` from this collection.
    *
-   * @param  {Model} model
+   * @param  {A} model
    *
-   * @return {Model}
+   * @return {A}
    */
-  _removeModel(model: Model): Model | undefined;
+  _removeModel(model: A): A | undefined;
   /**
    * Removes the given model from this collection.
    *
-   * @param  {Model|Object|Array} model Model to remove, which can be a `Model`
+   * @param  {A|Object|Array} model Model to remove, which can be a `Model`
    *                                    instance, an object to filter by,
    *                                    a function to filter by, or an array
    *                                    of any of the above to remove multiple.
    *
-   * @return {Model|Model[]} The deleted model or an array of models if a filter
+   * @return {A|A[]} The deleted model or an array of models if a filter
    *                         or array type was given.
    *
    * @throws {Error} If the model is an invalid type.
    */
-  remove(model: Model): Model;
-  remove(
-    model: Model[] | Partial<Model> | ((model: Model) => boolean)
-  ): Model[];
+  remove(model: A): A;
+  remove(model: A[] | Partial<A> | ((model: A) => boolean)): A[];
   /**
    * Determines whether a given value is an instance of a model.
    *
@@ -220,16 +218,16 @@ declare class Collection extends Base {
    *
    * @return {number} the index of a model in this collection, or -1 if not found.
    */
-  indexOf(model: Model): number;
+  indexOf(model: A): number;
   /**
    * @param {string|function|Object} where
    *
-   * @return {Model} The first model that matches the given criteria, or
+   * @return {A} The first model that matches the given criteria, or
    *                 `undefined` if none could be found.
    *
    * @see {@link https://lodash.com/docs/#find}
    */
-  find(where: Predicate): Model | undefined;
+  find(where: Predicate): A | undefined;
   /**
    * Creates a new collection of the same type that contains only the models
    * for which the given predicate returns `true` for, or matches by property.
@@ -252,9 +250,9 @@ declare class Collection extends Base {
    *
    * @param {function|Object|string} predicate Receives `model`.
    *
-   * @returns {Model[]}
+   * @returns {A[]}
    */
-  where(predicate: Predicate): Model[];
+  where(predicate: Predicate): A[];
   /**
    * Returns an array that contains the returned result after applying a
    * function to each model in this collection.
@@ -263,9 +261,9 @@ declare class Collection extends Base {
    *
    * @param {function} callback Receives `model`.
    *
-   * @return {Model[]}
+   * @return {A[]}
    */
-  map<T = Model>(callback: string | ((model: Model) => T)): T[];
+  map<T = A>(callback: string | ((model: A) => T)): T[];
   /**
    * Iterates through all models, calling a given callback for each one.
    *
@@ -273,7 +271,7 @@ declare class Collection extends Base {
    *
    * @param {function} callback Receives `model` and `index`.
    */
-  each(callback: (model: Model) => void): void;
+  each(callback: (model: A) => void): void;
   /**
    * Reduces this collection to a value which is the accumulated result of
    * running each model through `iteratee`, where each successive invocation
@@ -289,8 +287,8 @@ declare class Collection extends Base {
    *
    * @returns {*} The final value of result, after the last iteration.
    */
-  reduce<U = Model>(
-    iteratee: (result: U | undefined, model: Model, index: number) => U,
+  reduce<U = A>(
+    iteratee: (result: U | undefined, model: A, index: number) => U,
     initial?: U
   ): U | undefined;
   /**
@@ -300,7 +298,7 @@ declare class Collection extends Base {
    *
    * @returns {number} Sum of all models, accessed by attribute or callback.
    */
-  sum(iteratee: ((model: Model) => number) | string): number;
+  sum(iteratee: ((model: A) => number) | string): number;
   /**
    * Returns an object composed of keys generated from the results of running
    * each model through `iteratee`. The corresponding value of each key is the
@@ -310,7 +308,7 @@ declare class Collection extends Base {
    *
    * @returns {Object}
    */
-  count(iteratee: (model: Model) => any): Record<string, number>;
+  count(iteratee: (model: A) => any): Record<string, number>;
   /**
    * Sorts this collection's models using a comparator. This method performs
    * a stable sort (it preserves the original sort order of equal elements).
@@ -320,42 +318,42 @@ declare class Collection extends Base {
    * @param {function|string} comparator Attribute name or attribute function,
    *                                     invoked with a single arg `model`.
    */
-  sort(comparator: ((model: Model) => any) | string): void;
+  sort(comparator: ((model: A) => any) | string): void;
   /**
-   * @param {Model|Object} model
+   * @param {A|Object} model
    *
    * @returns {boolean} `true` if this collection contains the given model,
    *                    `false` otherwise.
    */
-  has(model: Model): boolean;
+  has(model: A): boolean;
   /**
-   * @returns {Model|undefined} The first model of this collection.
+   * @returns {A|undefined} The first model of this collection.
    */
-  first(): Model | undefined;
+  first(): A | undefined;
   /**
-   * @returns {Model|undefined} The last model of this collection.
+   * @returns {A|undefined} The last model of this collection.
    */
-  last(): Model | undefined;
+  last(): A | undefined;
   /**
    * Removes and returns the first model of this collection, if there was one.
    *
-   * @returns {Model|undefined} Removed model or undefined if there were none.
+   * @returns {A|undefined} Removed model or undefined if there were none.
    */
-  shift(): Model | undefined;
+  shift(): A | undefined;
   /**
    * Removes and returns the last model of this collection, if there was one.
    *
-   * @returns {Model|undefined} Removed model or undefined if there were none.
+   * @returns {A|undefined} Removed model or undefined if there were none.
    */
-  pop(): Model | undefined;
+  pop(): A | undefined;
   /**
    * Replaces all models in this collection with those provided. This is
    * effectively equivalent to `clear` and `add`, and will result in an empty
    * collection if no models were provided.
    *
-   * @param {Model|Model[]} models Models to replace the current models with.
+   * @param {A|A[]} models Models to replace the current models with.
    */
-  replace(models: Model | Model[]): void;
+  replace(models: A | A[]): void;
   /**
    * Returns the query parameters that should be used when paginating.
    *
@@ -381,13 +379,13 @@ declare class Collection extends Base {
    */
   onSaveSuccess(response: Response): void;
   /**
-   * @returns {Model[]} Models in this collection that are in a "saving" state.
+   * @returns {A[]} Models in this collection that are in a "saving" state.
    */
-  getSavingModels(): Model[];
+  getSavingModels(): A[];
   /**
-   * @returns {Model[]} Models in this collection that are in a "deleting" state.
+   * @returns {A[]} Models in this collection that are in a "deleting" state.
    */
-  getDeletingModels(): Model[];
+  getDeletingModels(): A[];
   /**
    * Applies an array of validation errors to this collection's models.
    *
@@ -469,9 +467,9 @@ declare class Collection extends Base {
    * Responsible for adjusting the page and appending of models that were
    * received by a paginated fetch request.
    *
-   * @param {Model[]} models
+   * @param {A[]} models
    */
-  applyPagination(models: Model[]): void;
+  applyPagination(models: A[]): void;
   /**
    * Called when a fetch request was successful.
    *
@@ -517,7 +515,7 @@ declare class Collection extends Base {
    *
    * @returns {Array}
    */
-  getIdentifiers(models: Model[]): string[];
+  getIdentifiers(models: A[]): string[];
   /**
    * @inheritDoc
    */
@@ -545,8 +543,8 @@ declare class Collection extends Base {
 }
 export default Collection;
 export declare type Predicate<T = boolean> =
-  | ((model: Model) => T)
+  | ((model: TModel) => T)
   | string
   | Record<string, any>
-  | Model
-  | Partial<Model>;
+  | TModel
+  | Partial<TModel>;
