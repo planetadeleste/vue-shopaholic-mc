@@ -41,8 +41,7 @@ export default class Category extends Model {
       slug: [_.toString, _.trim],
       description: [_.toString, _.trim],
       preview_text: [_.toString, _.trim],
-      preview_image: [_.toString, _.trim],
-      images: Array
+      preview_image: [_.toString, _.trim]
     };
   }
 

@@ -543,8 +543,8 @@ declare class Collection<A extends Model = Model> extends Base {
 }
 export default Collection;
 export declare type Predicate<T = boolean> =
-  | ((model: TModel) => T)
+  | ((model: Model) => T)
   | string
   | Record<string, any>
-  | TModel
-  | Partial<TModel>;
+  | Model
+  | Partial<Model>;

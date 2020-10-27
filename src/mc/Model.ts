@@ -1,8 +1,9 @@
 import Vue from "vue";
 import Base from "./Base";
-import { Model as BaseModel } from "vue-mc";
+import { Model as BaseModel, RequestOptions } from "vue-mc";
 import { AxiosRequestConfig } from "axios";
 import Request from "./Request";
+import { serialize } from "object-to-formdata";
 import _ from "lodash";
 
 type Constructor<T> = new (...args: any[]) => T;
@@ -112,7 +113,68 @@ export default class Model extends BaseModel {
    */
   createRequest(config: AxiosRequestConfig): Request {
     const obRequest = new Request(config);
-    obRequest.$http = Base.$http;
     return obRequest;
+  }
+
+  /**
+   * @returns {Object} The data to send to the server when saving this model.
+   */
+  getSaveData(): Record<string, any> {
+    if (!this.isNew()) {
+      this.set("_method", "PUT");
+    }
+
+    return super.getSaveData();
+  }
+
+  /**
+   * Iterates over elements of data to find instaceof File
+   *
+   * @param {Object} data
+   * @returns {Boolean}
+   */
+  private hasFileUpload(data: any): boolean {
+    let hasFile = false;
+
+    if (data instanceof File) {
+      return true;
+    }
+
+    if (_.isArray(data) || _.isObject(data)) {
+      _.forEach(data, (item: any) => {
+        if (this.hasFileUpload(item)) {
+          hasFile = true;
+        }
+      });
+    } else if (data instanceof File) {
+      hasFile = true;
+    }
+
+    return hasFile;
+  }
+
+  /**
+   * Detect instance of File in saved data ams call upload or save methods.
+   * Persists data to the database/API.
+   *
+   * @param {options}             Save options
+   * @param {options.method}      Save HTTP method
+   * @param {options.url}         Save URL
+   * @param {options.data}        Save data
+   * @param {options.params}      Query params
+   * @param {options.headers}     Query headers
+   *
+   * @returns {Promise}
+   */
+  store(options: RequestOptions = {}) {
+    let data = _.defaultTo(options.data, this.getSaveData());
+
+    if (this.hasFileUpload(data)) {
+      data = serialize(data, { indices: true, booleansAsIntegers: true });
+    }
+
+    _.assign(options, { data });
+
+    return this.save(options);
   }
 }

@@ -87,11 +87,16 @@ export default class Profile extends Model {
   }
 
   async logout() {
+    const sToken = localStorage.getItem("access_token");
+    if (!sToken) {
+      return Promise.reject("token_not_provided");
+    }
+
     const method = this.getOption("methods.logout");
     const route = this.getRoute("logout");
     const params = this.getRouteParameters();
     const url = this.getURL(route, params);
-    const data = {};
+    const data = { token: sToken };
 
     return await this.createRequest({ method, url, data }).send();
   }

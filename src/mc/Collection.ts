@@ -3,11 +3,18 @@ import { AxiosRequestConfig } from "axios";
 import Request from "./Request";
 import _ from "lodash";
 import Base from "./Base";
+import {
+  ApiLinksResponse,
+  ApiMetaResponse
+} from "@bit/planetadeleste.shopaholic.types.api";
 
 export default class Collection<A extends Model = Model> extends BaseCollection<
   A
 > {
   private _baseClass!: Base;
+  private _links: ApiLinksResponse | Record<string, any> = {};
+  private _meta: ApiMetaResponse | Record<string, any> = {};
+
   private _base() {
     if (!this._baseClass) {
       this._baseClass = new Base();
@@ -51,7 +58,6 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
    */
   createRequest(config: AxiosRequestConfig): Request {
     const obRequest = new Request(config);
-    obRequest.$http = Base.$http;
     return obRequest;
   }
 
@@ -65,6 +71,16 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
       return null;
     }
 
+    // Add pagination meta/links properties
+    if (_.has(models, "meta")) {
+      this._meta = _.get(models, "meta");
+      this.page(this._meta.current_page);
+    }
+
+    if (_.has(models, "links")) {
+      this._links = _.get(models, "links");
+    }
+
     // We're making an assumption here that paginated models are returned
     // within the "data" field of the response.
     if (this.isPaginated() || _.has(models, "data")) {
@@ -72,6 +88,54 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
     }
 
     return models;
+  }
+
+  /*
+   * PAGINATION METHODS
+   */
+
+  /**
+   * Get the current collection page, gived from server response
+   * @returns {number}
+   */
+  getCurrentPage<T extends Collection>(this: T): number {
+    return _.get(this._meta, "current_page", 1);
+  }
+
+  /**
+   * Get last collection page, gived from server response
+   * @returns {number}
+   */
+  getLastPage<T extends Collection>(this: T): number {
+    return _.get(this._meta, "last_page", 1);
+  }
+
+  /**
+   * Get total number of collection items from server
+   * @returns {number}
+   */
+  getTotalItems<T extends Collection>(this: T): number {
+    return _.get(this._meta, "total", 0);
+  }
+
+  /**
+   * Get pagination data
+   * @returns {ApiMetaResponse}
+   */
+  getPaginationData<T extends Collection>(
+    this: T
+  ): ApiMetaResponse | Record<string, any> {
+    return this._meta;
+  }
+
+  /**
+   * Get pagination links for first, last, next and prev page
+   * @returns {ApiLinksResponse}
+   */
+  getLinks<T extends Collection>(
+    this: T
+  ): ApiLinksResponse | Record<string, any> {
+    return this._links;
   }
 
   /**
@@ -94,5 +158,12 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
     this.set("filters", obFilters);
 
     return this;
+  }
+
+  /**
+   * @returns {Record<string, any>} A native representation of this collection models that will determine the contents of JSON.stringify(model).
+   */
+  getModelList<T extends Collection>(this: T): Record<string, any> {
+    return _.map(this.getModels(), obModel => obModel.toJSON());
   }
 }

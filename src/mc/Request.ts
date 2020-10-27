@@ -1,14 +1,13 @@
 import { Response, Request as RequestBase } from "vue-mc";
-import axios, { AxiosStatic, AxiosError } from "axios";
+import { AxiosError } from "axios";
+import { Base } from ".";
 
 export default class Request extends RequestBase {
-  $http: AxiosStatic = axios;
-
   /**
    * @returns {Promise}
    */
   send(): Promise<Response> {
-    return this.$http
+    return Base.$http
       .request(this.config)
       .then(this.createResponse)
       .catch((error: AxiosError): never => {

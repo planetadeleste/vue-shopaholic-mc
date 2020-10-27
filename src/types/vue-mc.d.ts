@@ -33,6 +33,9 @@ declare module "vue-mc" {
 
   export * from "@bit/planetadeleste.shopaholic-mc.types.vue-mc/HTTP/BaseResponse";
   export * from "@bit/planetadeleste.shopaholic-mc.types.vue-mc/Validation/locale";
+  export * from "@bit/planetadeleste.shopaholic-mc.types.vue-mc/Structures/Base";
+  export * from "@bit/planetadeleste.shopaholic-mc.types.vue-mc/Structures/Collection";
+  export * from "@bit/planetadeleste.shopaholic-mc.types.vue-mc/Structures/Model";
 }
 
 declare module "vue-mc/validation" {
