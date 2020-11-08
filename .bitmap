@@ -34,8 +34,13 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "planetadeleste.shopaholic-mc/shopaholic@1.0.36": {
+    "planetadeleste.shopaholic-mc/shopaholic@1.0.37": {
         "files": [
+            {
+                "relativePath": "src/shopaholic/collections/Brands.ts",
+                "test": false,
+                "name": "Brands.ts"
+            },
             {
                 "relativePath": "src/shopaholic/collections/Categories.ts",
                 "test": false,
@@ -60,6 +65,11 @@
                 "relativePath": "src/shopaholic/index.ts",
                 "test": false,
                 "name": "index.ts"
+            },
+            {
+                "relativePath": "src/shopaholic/models/Brand.ts",
+                "test": false,
+                "name": "Brand.ts"
             },
             {
                 "relativePath": "src/shopaholic/models/Category.ts",
@@ -102,7 +112,7 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "planetadeleste.shopaholic-mc/ticket-shopaholic@1.0.37": {
+    "planetadeleste.shopaholic-mc/ticket-shopaholic@1.0.38": {
         "files": [
             {
                 "relativePath": "src/ticket-shopaholic/collections/Categories.ts",
