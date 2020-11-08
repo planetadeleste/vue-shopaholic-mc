@@ -37,7 +37,7 @@ declare class Collection<A extends Model = Model> extends Base {
    *
    * @returns {Collection}
    */
-  clone(): Collection;
+  clone<T extends Collection>(): T;
   /**
    * @return {A} The class/constructor for this collection's model type.
    */
@@ -241,7 +241,8 @@ declare class Collection<A extends Model = Model> extends Base {
    *
    * @returns {Collection}
    */
-  filter(predicate: Predicate): Collection;
+  filter<T extends Collection>(predicate: Predicate): T;
+
   /**
    * Returns the models for which the given predicate returns `true` for,
    * or models that match attributes in an object.
@@ -449,7 +450,7 @@ declare class Collection<A extends Model = Model> extends Base {
    *
    * @returns {Collection} This collection.
    */
-  page(page: number | boolean): this;
+  page<T extends Collection>(page: number | boolean): T;
   /**
    * @returns {integer|null} The page that this collection is on.
    */

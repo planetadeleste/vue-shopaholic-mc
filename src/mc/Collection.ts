@@ -161,6 +161,17 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
   }
 
   /**
+   * Limit number of records getting from query
+   *
+   * @param {Number} iCount Number of records to get
+   */
+  limit<T extends Collection>(this: T, iCount: number): T {
+    this.set("limit", iCount);
+
+    return this;
+  }
+
+  /**
    * @returns {Record<string, any>} A native representation of this collection models that will determine the contents of JSON.stringify(model).
    */
   getModelList<T extends Collection>(this: T): Record<string, any> {

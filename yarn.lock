@@ -857,38 +857,40 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@bit/planetadeleste.shopaholic-mc.base@1.0.14", "@bit/planetadeleste.shopaholic-mc.base@^1.0.2":
-  version "1.0.14"
-  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.base/-/planetadeleste.shopaholic-mc.base-1.0.14.tgz#37bafe20583232763fa30fb6a22ef3926ab9bb7d"
-  integrity sha1-N7r+IFgyMnY/ow+2oi7zkmq5u30=
+"@bit/planetadeleste.shopaholic-mc.base@1.0.29", "@bit/planetadeleste.shopaholic-mc.base@^1.0.2":
+  version "1.0.29"
+  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.base/-/planetadeleste.shopaholic-mc.base-1.0.29.tgz#cfe8cf3953a9355b2018fb221b4c9e0de52a7ccc"
+  integrity sha1-z+jPOVOpNVsgGPsiG0yeDeUqfMw=
   dependencies:
-    "@bit/planetadeleste.shopaholic-mc.types.vue-mc" "1.0.10"
+    "@bit/planetadeleste.shopaholic-mc.types.vue-mc" "1.0.12"
+    "@bit/planetadeleste.shopaholic.types.api" "0.0.8"
     "@types/lodash" "^4.14.162"
-    axios "0.19.0"
+    axios "^0.20.0"
     lodash "^4.17.20"
+    object-to-formdata "^4.1.0"
     vue "^2.6.11"
     vue-mc "^0.6.0"
     vuex-module-decorators "^1.0.1"
 
 "@bit/planetadeleste.shopaholic-mc.shopaholic@^1.0.1":
-  version "1.0.18"
-  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.shopaholic/-/planetadeleste.shopaholic-mc.shopaholic-1.0.18.tgz#0c91df396721a53dd2f84a75ac5074a8f51a38fa"
-  integrity sha1-DJHfOWchpT3S+Ep1rFB0qPUaOPo=
+  version "1.0.35"
+  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.shopaholic/-/planetadeleste.shopaholic-mc.shopaholic-1.0.35.tgz#dc8d3da81310c0ef1a4ef36a2d2254cab81655c2"
+  integrity sha1-3I09qBMQwO8aTvNqLSJUyrgWVcI=
   dependencies:
-    "@bit/planetadeleste.shopaholic-mc.base" "1.0.14"
+    "@bit/planetadeleste.shopaholic-mc.base" "1.0.29"
     "@bit/planetadeleste.shopaholic.types.base" "0.0.2"
     "@types/lodash" "^4.14.162"
     lodash "^4.17.20"
     vue-mc "^0.6.0"
 
-"@bit/planetadeleste.shopaholic-mc.types.vue-mc@1.0.10", "@bit/planetadeleste.shopaholic-mc.types.vue-mc@^1.0.0":
-  version "1.0.10"
-  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.types.vue-mc/-/planetadeleste.shopaholic-mc.types.vue-mc-1.0.10.tgz#f4df3c0f5d75508659c12eb9db3b6ed42b83a8a6"
-  integrity sha1-9N88D111UIZZwS652ztu1CuDqKY=
+"@bit/planetadeleste.shopaholic-mc.types.vue-mc@1.0.12", "@bit/planetadeleste.shopaholic-mc.types.vue-mc@^1.0.0":
+  version "1.0.12"
+  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.types.vue-mc/-/planetadeleste.shopaholic-mc.types.vue-mc-1.0.12.tgz#93b9d2a2db1ba66cfbb8efe2487fb19d0202f493"
+  integrity sha1-k7nSotsbpmz7uO/iSH+xnQIC9JM=
   dependencies:
-    axios "0.19.0"
+    axios "^0.20.0"
 
-"@bit/planetadeleste.shopaholic.types.api@^0.0":
+"@bit/planetadeleste.shopaholic.types.api@0.0.8", "@bit/planetadeleste.shopaholic.types.api@^0.0":
   version "0.0.8"
   resolved "https://node.bit.dev/planetadeleste.shopaholic.types.api/-/planetadeleste.shopaholic.types.api-0.0.8.tgz#4c490ee7bac976c798157ce887129a9574176c8c"
   integrity sha1-TEkO57rJdseYFXzohxKalXQXbIw=
@@ -2017,6 +2019,13 @@ axios@0.19.0:
   dependencies:
     follow-redirects "1.5.10"
     is-buffer "^2.0.2"
+
+axios@^0.20.0:
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.20.0.tgz#057ba30f04884694993a8cd07fa394cff11c50bd"
+  integrity sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==
+  dependencies:
+    follow-redirects "^1.10.0"
 
 babel-code-frame@^6.22.0:
   version "6.26.0"
@@ -4314,7 +4323,7 @@ follow-redirects@1.5.10:
   dependencies:
     debug "=3.1.0"
 
-follow-redirects@^1.0.0:
+follow-redirects@^1.0.0, follow-redirects@^1.10.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
   integrity sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA==
@@ -5154,9 +5163,9 @@ is-buffer@^1.1.5:
   integrity sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==
 
 is-buffer@^2.0.2:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-2.0.4.tgz#3e572f23c8411a5cfd9557c849e3665e0b290623"
-  integrity sha512-Kq1rokWXOPXWuaMAqZiJW4XxsmD9zGx9q4aePabbn3qCRGedtH7Cm+zV8WETitMfu1wdh+Rvd6w5egwSngUX2A==
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-2.0.5.tgz#ebc252e400d22ff8d77fa09888821a24a658c191"
+  integrity sha512-i2R6zNFDwgEHJyQUtJEk0XFi1i0dPFn/oqjK3/vPCcDeJvW5NQ83V8QbicfF1SupOaB0h8ntgBC2YiE7dfyctQ==
 
 is-callable@^1.1.4, is-callable@^1.2.2:
   version "1.2.2"

@@ -14,7 +14,7 @@
     "@bit/planetadeleste.shopaholic.types.api": "^0.0",
     "@bit/planetadeleste.shopaholic.types.base": "^0.0.2",
     "@types/lodash": "^4.14.162",
-    "axios": "0.19.0",
+    "axios": "^0.20.0",
     "core-js": "^3.6.5",
     "lodash": "^4.17.20",
     "object-to-formdata": "^4.1.0",
@@ -60,6 +60,14 @@
   },
   "bit": {
     "env": {},
+    "overrides": {
+      "shopaholic-mc/*": {
+        "dependencies": {
+          "axios": "^0.20.0"
+        },
+        "propagate": true
+      }
+    },
     "componentsDefaultDirectory": "components/{name}",
     "packageManager": "yarn"
   }
