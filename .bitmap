@@ -34,6 +34,24 @@
         "origin": "AUTHORED",
         "exported": true
     },
+    "planetadeleste.shopaholic-mc/martin-forms@1.0.0": {
+        "files": [
+            {
+                "relativePath": "src/martin-forms/index.ts",
+                "test": false,
+                "name": "index.ts"
+            },
+            {
+                "relativePath": "src/martin-forms/models/FormRecord.ts",
+                "test": false,
+                "name": "FormRecord.ts"
+            }
+        ],
+        "mainFile": "src/martin-forms/index.ts",
+        "trackDir": "src/martin-forms",
+        "origin": "AUTHORED",
+        "exported": true
+    },
     "planetadeleste.shopaholic-mc/shopaholic@1.0.38": {
         "files": [
             {
