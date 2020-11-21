@@ -9,8 +9,9 @@ import Categories from "./collections/Categories";
 import Products from "./collections/Products";
 import Users from "./collections/Users";
 import Groups from "./collections/Groups";
+import Brands from "./collections/Brands";
 
-export { Categories, Products, Users, Groups };
+export { Categories, Products, Users, Groups, Brands };
 
 // MODELS
 import Category from "./models/Category";
@@ -20,5 +21,6 @@ import Profile from "./models/Profile";
 import User from "./models/User";
 import UserAddress from "./models/UserAddress";
 import Group from "./models/Group";
+import Brand from "./models/Brand";
 
-export { Category, Offer, Product, Profile, User, UserAddress, Group };
+export { Category, Offer, Product, Profile, User, UserAddress, Group, Brand };
