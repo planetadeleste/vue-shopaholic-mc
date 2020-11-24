@@ -34,6 +34,39 @@
         "origin": "AUTHORED",
         "exported": true
     },
+    "planetadeleste.shopaholic-mc/goodnews@1.0.0": {
+        "files": [
+            {
+                "relativePath": "src/goodnews/collections/Articles.ts",
+                "test": false,
+                "name": "Articles.ts"
+            },
+            {
+                "relativePath": "src/goodnews/collections/Categories.ts",
+                "test": false,
+                "name": "Categories.ts"
+            },
+            {
+                "relativePath": "src/goodnews/index.ts",
+                "test": false,
+                "name": "index.ts"
+            },
+            {
+                "relativePath": "src/goodnews/models/Article.ts",
+                "test": false,
+                "name": "Article.ts"
+            },
+            {
+                "relativePath": "src/goodnews/models/Category.ts",
+                "test": false,
+                "name": "Category.ts"
+            }
+        ],
+        "mainFile": "src/goodnews/index.ts",
+        "trackDir": "src/goodnews",
+        "origin": "AUTHORED",
+        "exported": true
+    },
     "planetadeleste.shopaholic-mc/martin-forms@1.0.0": {
         "files": [
             {
