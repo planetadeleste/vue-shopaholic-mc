@@ -67,6 +67,49 @@
         "origin": "AUTHORED",
         "exported": true
     },
+    "planetadeleste.shopaholic-mc/location@1.0.0": {
+        "files": [
+            {
+                "relativePath": "src/location/collections/Countries.ts",
+                "test": false,
+                "name": "Countries.ts"
+            },
+            {
+                "relativePath": "src/location/collections/States.ts",
+                "test": false,
+                "name": "States.ts"
+            },
+            {
+                "relativePath": "src/location/collections/Towns.ts",
+                "test": false,
+                "name": "Towns.ts"
+            },
+            {
+                "relativePath": "src/location/index.ts",
+                "test": false,
+                "name": "index.ts"
+            },
+            {
+                "relativePath": "src/location/models/Country.ts",
+                "test": false,
+                "name": "Country.ts"
+            },
+            {
+                "relativePath": "src/location/models/State.ts",
+                "test": false,
+                "name": "State.ts"
+            },
+            {
+                "relativePath": "src/location/models/Town.ts",
+                "test": false,
+                "name": "Town.ts"
+            }
+        ],
+        "mainFile": "src/location/index.ts",
+        "trackDir": "src/location",
+        "origin": "AUTHORED",
+        "exported": true
+    },
     "planetadeleste.shopaholic-mc/martin-forms@1.0.0": {
         "files": [
             {
