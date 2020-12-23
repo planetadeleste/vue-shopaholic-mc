@@ -175,6 +175,6 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
    * @returns {Record<string, any>} A native representation of this collection models that will determine the contents of JSON.stringify(model).
    */
   getModelList<T extends Collection>(this: T): Record<string, any> {
-    return _.map(this.getModels(), obModel => obModel.toJSON());
+    return _.map(this.getModels(), (obModel: A) => obModel.toJSON());
   }
 }

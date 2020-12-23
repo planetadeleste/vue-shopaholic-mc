@@ -56,7 +56,10 @@ export default class Article extends Model {
 
   routes() {
     return {
-      fetch: "blog.articles.show"
+      fetch: "blog.articles.show",
+      create: "blog.articles.store",
+      update: "blog.articles.update",
+      delete: "blog.articles.destroy"
     };
   }
 }

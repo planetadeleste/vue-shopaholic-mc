@@ -45,7 +45,10 @@ export default class Category extends Model {
   routes() {
     return {
       fetch: "blog.categories.show",
-      save: "blog.categories.store"
+      save: "blog.categories.store",
+      create: "blog.categories.store",
+      update: "blog.categories.update",
+      delete: "blog.categories.destroy"
     };
   }
 }

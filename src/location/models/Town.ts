@@ -10,6 +10,7 @@ export default class Town extends Model {
   slug!: string;
   description!: string;
   is_enabled!: boolean;
+  state!: State;
 
   defaults() {
     return {
