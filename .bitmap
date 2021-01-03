@@ -128,7 +128,7 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "planetadeleste.shopaholic-mc/shopaholic@1.0.52": {
+    "planetadeleste.shopaholic-mc/shopaholic@1.0.54": {
         "files": [
             {
                 "relativePath": "src/shopaholic/collections/Brands.ts",
@@ -216,7 +216,7 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "planetadeleste.shopaholic-mc/ticket-shopaholic@1.0.53": {
+    "planetadeleste.shopaholic-mc/ticket-shopaholic@1.0.55": {
         "files": [
             {
                 "relativePath": "src/ticket-shopaholic/collections/Categories.ts",
