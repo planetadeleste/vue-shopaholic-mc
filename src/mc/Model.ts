@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Base from "./Base";
-import { Model as BaseModel, RequestOptions } from "vue-mc";
+import { Model as BaseModel, RequestOptions, Response } from "vue-mc";
 import { AxiosRequestConfig } from "axios";
 import Request from "./Request";
 import { serialize } from "object-to-formdata";
@@ -16,9 +16,9 @@ export interface RelationConfig {
 }
 
 export default class Model extends BaseModel {
-  private _relations!: Record<string, Constructor<Model>>;
-  private _baseClass!: Base;
-  private _base() {
+  _relations!: Record<string, Constructor<Model>>;
+  _baseClass!: Base;
+  _base() {
     if (!this._baseClass) {
       this._baseClass = new Base();
     }
@@ -114,6 +114,35 @@ export default class Model extends BaseModel {
   createRequest(config: AxiosRequestConfig): Request {
     const obRequest = new Request(config);
     return obRequest;
+  }
+
+  /**
+   * Create a custom request, using option.method, route and data
+   *
+   * @param {string} sMethod Method key name
+   * @param {string | Record<string, any>} [sRoute] Route key name
+   * @param {Record<string, any>} [obData]
+   * @returns {Promise<Response>}
+   */
+  async createCustomRequest(
+    sMethod: string,
+    sRoute?: string | Record<string, any>,
+    obData?: Record<string, any>
+  ): Promise<Response> {
+    if (!_.isString(sRoute)) {
+      if (_.isPlainObject(sRoute)) {
+        obData = sRoute;
+      }
+
+      sRoute = sMethod;
+    }
+
+    const method = this.getOption(`methods.${sMethod}`);
+    const route = this.getRoute(sRoute);
+    const params = this.getRouteParameters();
+    const url = this.getURL(route, params);
+
+    return await this.createRequest({ method, url, data: obData }).send();
   }
 
   /**

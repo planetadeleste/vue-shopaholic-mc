@@ -25,6 +25,27 @@ export default class Offer extends Model {
   start_publish_at!: string;
   end_publish_at!: string;
 
+  defaults() {
+    return {
+      id: null,
+      active: false,
+      name: null,
+      code: null,
+      price: null,
+      price_value: null,
+      old_price: null,
+      old_price_value: null,
+      quantity: null,
+      currency: null,
+      preview_text: null,
+      thumbnail: null,
+      description: null,
+      preview_image: null,
+      images: [],
+      property: []
+    };
+  }
+
   routes() {
     return {
       fetch: "offers.show",

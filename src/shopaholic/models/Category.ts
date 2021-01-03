@@ -6,6 +6,7 @@ import Categories from "../collections/Categories";
 
 export default class Category extends Model {
   id!: number;
+  active!: boolean;
   name!: string;
   code!: string;
   slug!: string;
@@ -15,14 +16,23 @@ export default class Category extends Model {
   created_at!: string;
   updated_at!: string;
   description!: string;
-  active!: boolean;
   external_id!: string;
   children!: Categories;
 
   defaults() {
     return {
       id: null,
-      name: null
+      active: false,
+      name: null,
+      code: null,
+      slug: null,
+      preview_image: null,
+      images: [],
+      preview_text: null,
+      created_at: null,
+      updated_at: null,
+      description: null,
+      external_id: null
     };
   }
 

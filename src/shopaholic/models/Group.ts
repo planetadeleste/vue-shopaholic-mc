@@ -14,7 +14,8 @@ export default class Group extends Model {
     return {
       id: null,
       name: null,
-      code: null
+      code: null,
+      description: null
     };
   }
 

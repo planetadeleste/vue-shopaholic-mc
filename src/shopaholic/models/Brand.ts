@@ -22,7 +22,17 @@ export default class Brand extends Model {
     return {
       id: null,
       name: null,
-      slug: null
+      slug: null,
+      active: false,
+      code: null,
+      preview_text: null,
+      preview_image: null,
+      images: [],
+      created_at: null,
+      updated_at: null,
+      external_id: null,
+      description: null,
+      sort_order: null
     };
   }
 

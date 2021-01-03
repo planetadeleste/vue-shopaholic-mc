@@ -28,8 +28,20 @@ export default class Product extends Model {
   defaults() {
     return {
       id: null,
+      category_id: null,
+      active: false,
+      slug: null,
       name: null,
-      slug: null
+      category_name: null,
+      offers: [],
+      images: [],
+      preview_image: null,
+      preview_text: null,
+      created_at: null,
+      updated_at: null,
+      external_id: null,
+      description: null,
+      code: null
     };
   }
 

@@ -11,11 +11,11 @@ import {
 export default class Collection<A extends Model = Model> extends BaseCollection<
   A
 > {
-  private _baseClass!: Base;
-  private _links: ApiLinksResponse | Record<string, any> = {};
-  private _meta: ApiMetaResponse | Record<string, any> = {};
+  _baseClass!: Base;
+  _links: ApiLinksResponse | Record<string, any> = {};
+  _meta: ApiMetaResponse | Record<string, any> = {};
 
-  private _base() {
+  _base() {
     if (!this._baseClass) {
       this._baseClass = new Base();
     }

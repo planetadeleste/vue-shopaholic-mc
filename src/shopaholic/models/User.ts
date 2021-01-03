@@ -21,8 +21,19 @@ export default class User extends Model {
   defaults() {
     return {
       id: null,
+      is_activated: false,
       name: null,
-      email: null
+      email: null,
+      groups: [],
+      last_name: null,
+      middle_name: null,
+      phone: null,
+      phone_list: null,
+      avatar: null,
+      property: [],
+      address: null,
+      password: null,
+      password_confirmation: null
     };
   }
 

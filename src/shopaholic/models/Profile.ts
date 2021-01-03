@@ -20,7 +20,20 @@ export default class Profile extends Model {
   role?: string;
 
   defaults() {
-    return {};
+    return {
+      id: null,
+      groups: [],
+      email: null,
+      name: null,
+      last_name: null,
+      middle_name: null,
+      phone: null,
+      phone_list: null,
+      avatar: null,
+      property: [],
+      address: null,
+      role: null
+    };
   }
 
   mutations() {
