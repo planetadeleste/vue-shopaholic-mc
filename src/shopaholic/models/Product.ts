@@ -2,7 +2,7 @@ import { Model } from "@bit/planetadeleste.shopaholic-mc.base";
 import Category from "./Category";
 import { OCFileData } from "@bit/planetadeleste.shopaholic.types.base";
 import Offer from "./Offer";
-import _ from "lodash";
+import { trim, toNumber, toString } from "lodash";
 import { required, string } from "vue-mc/validation";
 
 export default class Product extends Model {
@@ -47,12 +47,12 @@ export default class Product extends Model {
 
   mutations() {
     return {
-      id: (id: string) => _.toNumber(id) || null,
-      name: [_.toString, _.trim],
-      slug: [_.toString, _.trim],
-      description: [_.toString, _.trim],
-      preview_text: [_.toString, _.trim],
-      preview_image: [_.toString, _.trim],
+      id: (id: string) => toNumber(id) || null,
+      name: [toString, trim],
+      slug: [toString, trim],
+      description: [toString, trim],
+      preview_text: [toString, trim],
+      preview_image: [toString, trim],
       images: Array
     };
   }

@@ -1,5 +1,5 @@
 import { Model } from "@bit/planetadeleste.shopaholic-mc.base";
-import _ from "lodash";
+import { trim, toNumber, toString } from "lodash";
 import { required, string } from "vue-mc/validation";
 
 export default class Group extends Model {
@@ -21,9 +21,9 @@ export default class Group extends Model {
 
   mutations() {
     return {
-      id: (id: string) => _.toNumber(id) || null,
-      name: [_.toString, _.trim],
-      code: [_.toString, _.trim]
+      id: (id: string) => toNumber(id) || null,
+      name: [toString, trim],
+      code: [toString, trim]
     };
   }
 
