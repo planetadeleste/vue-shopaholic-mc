@@ -8,5 +8,17 @@
 import Collection from "./Collection";
 import Model from "./Model";
 import Base from "./Base";
+import { toString, trim, isNil } from "lodash";
 
 export { Base, Collection, Model };
+
+/**
+ * Convert value to string and trim
+ * @param {string} [sVal]
+ */
+export const cleanStr = (sVal?: string) => {
+  if (isNil(sVal)) {
+    return null;
+  }
+  return trim(toString(sVal));
+};

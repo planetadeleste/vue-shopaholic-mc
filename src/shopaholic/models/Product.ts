@@ -1,13 +1,14 @@
-import { Model } from "@bit/planetadeleste.shopaholic-mc.base";
+import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
 import Category from "./Category";
 import { OCFileData } from "@bit/planetadeleste.shopaholic.types.base";
 import Offer from "./Offer";
-import { trim, toNumber, toString } from "lodash";
+import { toNumber } from "lodash";
 import { required, string } from "vue-mc/validation";
 
 export default class Product extends Model {
   id!: number;
   category_id!: number;
+  brand_id!: number;
   category!: Category;
   slug!: string;
   name!: string;
@@ -29,6 +30,7 @@ export default class Product extends Model {
     return {
       id: null,
       category_id: null,
+      brand_id: null,
       active: false,
       slug: null,
       name: null,
@@ -48,12 +50,10 @@ export default class Product extends Model {
   mutations() {
     return {
       id: (id: string) => toNumber(id) || null,
-      name: [toString, trim],
-      slug: [toString, trim],
-      description: [toString, trim],
-      preview_text: [toString, trim],
-      preview_image: [toString, trim],
-      images: Array
+      name: [cleanStr],
+      slug: [cleanStr],
+      description: [cleanStr],
+      preview_text: [cleanStr]
     };
   }
 

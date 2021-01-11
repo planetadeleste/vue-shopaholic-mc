@@ -1,4 +1,9 @@
-import { Collection as BaseCollection, Model, Response } from "vue-mc";
+import {
+  Collection as BaseCollection,
+  Model,
+  Response,
+  ResponseError
+} from "vue-mc";
 import { AxiosRequestConfig } from "axios";
 import Request from "./Request";
 import _ from "lodash";
@@ -59,6 +64,42 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
   createRequest(config: AxiosRequestConfig): Request {
     const obRequest = new Request(config);
     return obRequest;
+  }
+
+  /**
+   * Create a custom request, using option.method, route and data
+   *
+   * @param {string} sMethod Method key name
+   * @param {string | Record<string, any>} [sRoute] Route key name
+   * @param {Record<string, any>} [obData]
+   * @returns {Promise<Response>}
+   */
+  createCustomRequest(
+    sMethod: string,
+    sRoute?: string | Record<string, any>,
+    obData?: Record<string, any>
+  ): Promise<Response | null | void> {
+    if (!_.isString(sRoute)) {
+      if (_.isPlainObject(sRoute)) {
+        obData = sRoute;
+      }
+
+      sRoute = sMethod;
+    }
+
+    const method = this.getOption(`methods.${sMethod}`);
+    const route = this.getRoute(sRoute);
+    const params = this.getRouteParameters();
+    const url = this.getURL(route, params);
+
+    return this.createRequest({ method, url, data: obData })
+      .send()
+      .then((response): void => {
+        this.onFetchSuccess(response);
+      })
+      .catch((error: ResponseError): void => {
+        this.onFetchFailure(error);
+      });
   }
 
   getModelsFromResponse(response: Response): any {

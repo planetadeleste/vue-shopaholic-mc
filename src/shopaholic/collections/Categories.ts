@@ -6,10 +6,23 @@ export default class Categories extends Collection<Category> {
     return Category;
   }
 
+  options() {
+    return {
+      methods: {
+        tree: "GET"
+      }
+    };
+  }
+
   routes() {
     return {
-      fetch: "categories.index"
+      fetch: "categories.index",
+      tree: "categories.tree"
     };
+  }
+
+  tree() {
+    return this.createCustomRequest("tree");
   }
 
   /**

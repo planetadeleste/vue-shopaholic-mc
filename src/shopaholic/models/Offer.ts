@@ -1,30 +1,7 @@
-import { Model } from "@bit/planetadeleste.shopaholic-mc.base";
-import { OCFileData } from "@bit/planetadeleste.shopaholic.types.base";
+import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
+import { toNumber } from "lodash";
 
 export default class Offer extends Model {
-  id!: number | string;
-  name!: string;
-  code!: string;
-  price!: string;
-  price_value!: number;
-  old_price!: string;
-  old_price_value!: number;
-  quantity!: number;
-  currency!: string;
-  preview_text!: string;
-  thumbnail!: string;
-  text!: string;
-  value!: number;
-  active!: number;
-  description!: string;
-  preview_image!: string;
-  images!: OCFileData[];
-  property!: any[];
-
-  // TicketShopaholic plugin
-  start_publish_at!: string;
-  end_publish_at!: string;
-
   defaults() {
     return {
       id: null,
@@ -43,6 +20,28 @@ export default class Offer extends Model {
       preview_image: null,
       images: [],
       property: []
+    };
+  }
+
+  mutations() {
+    return {
+      id: (id: string) => toNumber(id) || null,
+      name: [cleanStr],
+      code: [cleanStr],
+      description: [cleanStr],
+      preview_text: [cleanStr],
+      price: (sPrice?: string | number) => {
+        if (!sPrice) {
+          return this.price_value;
+        }
+        return sPrice;
+      },
+      old_price: (sPrice?: string | number) => {
+        if (!sPrice) {
+          return this.old_price_value;
+        }
+        return sPrice;
+      }
     };
   }
 
