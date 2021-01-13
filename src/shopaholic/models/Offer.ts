@@ -5,6 +5,7 @@ export default class Offer extends Model {
   defaults() {
     return {
       id: null,
+      product_id: null,
       active: false,
       name: null,
       code: null,

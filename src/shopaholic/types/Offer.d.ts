@@ -2,7 +2,8 @@ import { Model } from "@bit/planetadeleste.shopaholic-mc.types.vue-mc";
 import { OCFileData } from "@bit/planetadeleste.shopaholic.types.base";
 
 export default class Offer extends Model {
-  id: number | string;
+  id: number;
+  product_id: number;
   name: string;
   code: string;
   price: string;
