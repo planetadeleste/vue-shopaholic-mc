@@ -1,6 +1,6 @@
-import { Model } from "@bit/planetadeleste.shopaholic-mc.base";
+import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
 import { required, string, number } from "vue-mc/validation";
-import _ from "lodash";
+import { toNumber } from "lodash";
 import State from "./State";
 
 export default class Town extends Model {
@@ -21,9 +21,9 @@ export default class Town extends Model {
 
   mutations() {
     return {
-      id: (id: string) => _.toNumber(id) || null,
-      name: [_.toString, _.trim],
-      slug: [_.toString, _.trim],
+      id: (id: string) => toNumber(id) || null,
+      name: [cleanStr],
+      slug: [cleanStr],
       state: (obData: object) => {
         return new State(obData);
       }

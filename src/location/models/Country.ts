@@ -1,6 +1,6 @@
-import { Model } from "@bit/planetadeleste.shopaholic-mc.base";
+import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
 import { required, string } from "vue-mc/validation";
-import _ from "lodash";
+import { toNumber, pick } from "lodash";
 
 export default class Country extends Model {
   id!: number;
@@ -19,9 +19,9 @@ export default class Country extends Model {
 
   mutations() {
     return {
-      id: (id: string) => _.toNumber(id) || null,
-      name: [_.toString, _.trim],
-      code: [_.toString, _.trim]
+      id: (id: string) => toNumber(id) || null,
+      name: [cleanStr],
+      code: [cleanStr]
     };
   }
 
@@ -59,7 +59,7 @@ export default class Country extends Model {
   getStates() {
     const method = this.getOption("methods.states");
     const route = this.getRoute("states");
-    const params = _.pick(this.getRouteParameters(), "id");
+    const params = pick(this.getRouteParameters(), "id");
     const url = this.getURL(route, params);
     const data = this.getSaveData();
 

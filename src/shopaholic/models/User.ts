@@ -1,4 +1,4 @@
-import { Model } from "@bit/planetadeleste.shopaholic-mc.base";
+import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
 import _ from "lodash";
 import UserAddress from "./UserAddress";
 import { required, string, email } from "vue-mc/validation";
@@ -40,8 +40,13 @@ export default class User extends Model {
   mutations() {
     return {
       id: (id: string) => _.toNumber(id) || null,
-      name: [_.toString, _.trim],
-      email: [_.toString, _.trim],
+      name: [cleanStr],
+      email: [cleanStr]
+    };
+  }
+
+  accessors() {
+    return {
       fullName: () => {
         return _.chain([this.name, this.middle_name, this.last_name])
           .compact()

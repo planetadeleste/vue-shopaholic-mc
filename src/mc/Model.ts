@@ -16,6 +16,7 @@ export interface RelationConfig {
 }
 
 export default class Model extends BaseModel {
+  _accessors!: Record<string, Accessor>;
   _relations!: Record<string, Constructor<Model>>;
   _baseClass!: Base;
   _base() {
@@ -29,6 +30,10 @@ export default class Model extends BaseModel {
   boot() {
     this._base();
     Vue.set(this, "_relations", {});
+    Vue.set(this, "_accessors", {});
+
+    this.compileAccessors();
+    this.assignAccessors();
     this.assignRelations();
   }
 
@@ -86,6 +91,33 @@ export default class Model extends BaseModel {
   assignRelations() {
     _.each(this.definedRelations(), (config, name) => {
       this.registerRelation(name, config);
+    });
+  }
+
+  /**
+   *  @returns {Object} Attribute accessor keyed by attribute name.
+   */
+  accessors(): Record<string, Accessor | Accessor[]> {
+    return {};
+  }
+
+  /**
+   * Compiles all accessors into pipelines that can be executed quickly.
+   */
+  compileAccessors(): void {
+    this._accessors = _.mapValues(
+      this.accessors(),
+      (m: Accessor | Accessor[]): Accessor => _.flow(m as Accessor[])
+    );
+  }
+
+  /**
+   * Sync all accessors with model attributes
+   */
+  assignAccessors(): void {
+    _.each(this._accessors, (sVal, sKey) => {
+      this.registerAttribute(sKey);
+      this.set(sKey, sVal);
     });
   }
 
@@ -207,3 +239,5 @@ export default class Model extends BaseModel {
     return this.save(options);
   }
 }
+
+export type Accessor = (value: any) => any;

@@ -1,6 +1,6 @@
-import { Model } from "@bit/planetadeleste.shopaholic-mc.base";
+import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
 import { OCFileData } from "@bit/planetadeleste.shopaholic.types.base";
-import { trim, toNumber, toString } from "lodash";
+import { toNumber } from "lodash";
 import { required, string } from "vue-mc/validation";
 
 export default class Brand extends Model {
@@ -39,12 +39,11 @@ export default class Brand extends Model {
   mutations() {
     return {
       id: (id: string) => toNumber(id) || null,
-      name: [toString, trim],
-      slug: [toString, trim],
-      description: [toString, trim],
-      preview_text: [toString, trim],
-      preview_image: [toString, trim],
-      images: Array
+      name: [cleanStr],
+      slug: [cleanStr],
+      description: [cleanStr],
+      preview_text: [cleanStr],
+      preview_image: [cleanStr]
     };
   }
 

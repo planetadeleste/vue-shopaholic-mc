@@ -1,7 +1,7 @@
-import { Model } from "@bit/planetadeleste.shopaholic-mc.base";
+import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
 import { integer, min, string, required } from "vue-mc/validation";
 import { OCFileData } from "@bit/planetadeleste.shopaholic.types.base";
-import _ from "lodash";
+import { toNumber } from "lodash";
 import MarkdownIt from "markdown-it";
 
 export default class Article extends Model {
@@ -35,15 +35,15 @@ export default class Article extends Model {
 
   mutations() {
     return {
-      id: (id: string) => _.toNumber(id) || null,
+      id: (id: string) => toNumber(id) || null,
       category_id: (id: string) => Number(id) || null,
       title: (sValue: string) => new MarkdownIt().renderInline(sValue) || null,
-      slug: [_.toString, _.trim],
-      content: [_.toString, _.trim],
-      preview_text: [_.toString, _.trim],
-      preview_image: [_.toString, _.trim],
-      published_start: [_.toString, _.trim],
-      published_stop: [_.toString, _.trim]
+      slug: [cleanStr],
+      content: [cleanStr],
+      preview_text: [cleanStr],
+      preview_image: [cleanStr],
+      published_start: [cleanStr],
+      published_stop: [cleanStr]
     };
   }
 

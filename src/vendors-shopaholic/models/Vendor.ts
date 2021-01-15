@@ -1,6 +1,6 @@
-import { Model } from "@bit/planetadeleste.shopaholic-mc.base";
+import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
 import { required, string, email, number } from "vue-mc/validation";
-import _ from "lodash";
+import { toNumber } from "lodash";
 
 export default class Vendor extends Model {
   id!: number;
@@ -16,16 +16,21 @@ export default class Vendor extends Model {
   defaults() {
     return {
       id: null,
+      user_id: null,
       name: null,
-      email: null
+      email: null,
+      commission: null,
+      full_name: null,
+      avatar: null
     };
   }
 
   mutations() {
     return {
-      id: (id: string) => _.toNumber(id) || null,
-      name: [_.toString, _.trim],
-      email: [_.toString, _.trim]
+      id: (id: string) => toNumber(id) || null,
+      user_id: (id: string) => toNumber(id) || null,
+      name: [cleanStr],
+      email: [cleanStr]
     };
   }
 
