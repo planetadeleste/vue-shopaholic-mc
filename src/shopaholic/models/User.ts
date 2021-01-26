@@ -63,12 +63,25 @@ export default class User extends Model {
     };
   }
 
+  options() {
+    return {
+      methods: {
+        stats: "GET"
+      }
+    };
+  }
+
   routes() {
     return {
       fetch: "users.show",
       create: "users.store",
       update: "users.update",
-      delete: "users.destroy"
+      delete: "users.destroy",
+      stats: "users.stats"
     };
+  }
+
+  async stats() {
+    return await this.createCustomRequest("stats");
   }
 }

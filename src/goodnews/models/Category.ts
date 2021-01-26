@@ -1,23 +1,31 @@
 import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
 import { required, string } from "vue-mc/validation";
-import { OCFileData } from "@bit/planetadeleste.shopaholic.types.base";
 import { toNumber } from "lodash";
 
+/**
+ * Lovata.GoodNew Category model
+ *
+ * @author Alvaro Canepa <bfpdevel@gmail.com>
+ * @export
+ * @class Category
+ * @extends {Model}
+ *
+ * @property {number} id
+ * @property {number} external_id
+ * @property {boolean} active
+ * @property {string} name
+ * @property {string} slug
+ * @property {string} code
+ * @property {string} content
+ * @property {string} preview_text
+ * @property {string} description
+ * @property {string} created_at
+ * @property {string} updated_at
+ * @property {string} preview_image
+ * @property {Array<OCFileData>} images
+ * @property {Array<Category>} children
+ */
 export default class Category extends Model {
-  id!: number;
-  name!: string;
-  code!: string;
-  slug!: string;
-  preview_image!: string;
-  images!: OCFileData[];
-  preview_text!: string;
-  description!: string;
-  created_at!: string;
-  updated_at!: string;
-  active!: boolean;
-  external_id!: string | number;
-  children!: Category[];
-
   defaults() {
     return {
       id: null,

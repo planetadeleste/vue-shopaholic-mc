@@ -2,7 +2,6 @@ import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
 import { Response } from "vue-mc";
 import _ from "lodash";
 import { required, string, email } from "vue-mc/validation";
-import UserAddress from "./UserAddress";
 
 export default class Profile extends Model {
   defaults() {

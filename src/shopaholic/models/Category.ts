@@ -52,8 +52,7 @@ export default class Category extends Model {
       name: [cleanStr],
       slug: [cleanStr],
       description: [cleanStr],
-      preview_text: [cleanStr],
-      preview_image: [cleanStr]
+      preview_text: [cleanStr]
     };
   }
 

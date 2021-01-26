@@ -33,7 +33,6 @@ export default class Model extends BaseModel {
     Vue.set(this, "_accessors", {});
 
     this.compileAccessors();
-    this.assignAccessors();
     this.assignRelations();
   }
 
@@ -109,15 +108,16 @@ export default class Model extends BaseModel {
       this.accessors(),
       (m: Accessor | Accessor[]): Accessor => _.flow(m as Accessor[])
     );
+
+    this.on("sync", this.assignAccessors);
   }
 
   /**
    * Sync all accessors with model attributes
    */
   assignAccessors(): void {
-    _.each(this._accessors, (sVal, sKey) => {
-      this.registerAttribute(sKey);
-      this.set(sKey, sVal);
+    _.each(this._accessors, (fAccessor: Accessor, sKey) => {
+      this.set(sKey, fAccessor());
     });
   }
 
@@ -240,4 +240,4 @@ export default class Model extends BaseModel {
   }
 }
 
-export type Accessor = (value: any) => any;
+export type Accessor = (value?: any) => any;

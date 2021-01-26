@@ -63,12 +63,25 @@ export default class Product extends Model {
     };
   }
 
+  options() {
+    return {
+      methods: {
+        stats: "GET"
+      }
+    };
+  }
+
   routes() {
     return {
       fetch: "products.show",
       create: "products.store",
       update: "products.update",
-      delete: "products.destroy"
+      delete: "products.destroy",
+      stats: "products.stats"
     };
+  }
+
+  async stats() {
+    return await this.createCustomRequest("stats");
   }
 }

@@ -1,6 +1,31 @@
 import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
 import { toNumber } from "lodash";
 
+/**
+ * Offer model
+ *
+ * @author Alvaro Canepa <bfpdevel@gmail.com>
+ * @export
+ * @class Offer
+ * @extends {Model}
+ * @property {number} id
+ * @property {number} product_id
+ * @property {string} name
+ * @property {string} code
+ * @property {number} price
+ * @property {number} price_value
+ * @property {number} old_price
+ * @property {number} old_price_value
+ * @property {number} quantity
+ * @property {string} currency
+ * @property {string} preview_text
+ * @property {string} thumbnail
+ * @property {boolean} active
+ * @property {string} description
+ * @property {string} preview_image
+ * @property {array} images
+ * @property {array} property
+ */
 export default class Offer extends Model {
   defaults() {
     return {

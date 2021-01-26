@@ -1,26 +1,35 @@
 import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
 import { integer, min, string, required } from "vue-mc/validation";
-import { OCFileData } from "@bit/planetadeleste.shopaholic.types.base";
 import { toNumber } from "lodash";
 import MarkdownIt from "markdown-it";
 
+/**
+ * Lovata.GoodNew Article model
+ *
+ * @author Alvaro Canepa <bfpdevel@gmail.com>
+ * @export
+ * @class Article
+ * @extends {Model}
+ *
+ * @property {number} id
+ * @property {number} category_id
+ * @property {number} status_id
+ * @property {number} view_count
+ * @property {string} title
+ * @property {string} slug
+ * @property {string} content
+ * @property {string} preview_text
+ * @property {string} published_start
+ * @property {string} published_stop
+ * @property {string} preview_image
+ * @property {Array<OCFileData>} images
+ */
 export default class Article extends Model {
-  id!: number;
-  category_id!: number;
-  title!: string;
-  slug!: string;
-  content!: string;
-  preview_text!: string;
-  preview_image!: string;
-  images!: OCFileData[];
-  published_start!: string;
-  published_stop!: string;
-  view_count!: string;
-
   defaults() {
     return {
       id: null,
       category_id: null,
+      status_id: 1,
       title: "",
       slug: "",
       content: "",
@@ -29,7 +38,7 @@ export default class Article extends Model {
       images: [],
       published_start: null,
       published_stop: null,
-      view_count: null
+      view_count: 0
     };
   }
 
