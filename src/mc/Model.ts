@@ -94,6 +94,25 @@ export default class Model extends BaseModel {
   }
 
   /**
+   * The isDirty method determines if any of the model's attributes have
+   * been changed since the model was retrieved. You may pass a specific
+   * attribute name to the isDirty method to determine if a particular
+   * attribute is dirty.
+   *
+   * @author Alvaro Canepa <bfpdevel@gmail.com>
+   * @return {boolean}
+   * @memberof Model
+   */
+  isDirty(sKey?: string) {
+    const arChanged = this.changed();
+    if (!arChanged) {
+      return false;
+    }
+
+    return sKey ? arChanged.includes(sKey) : true;
+  }
+
+  /**
    *  @returns {Object} Attribute accessor keyed by attribute name.
    */
   accessors(): Record<string, Accessor | Accessor[]> {
@@ -109,7 +128,7 @@ export default class Model extends BaseModel {
       (m: Accessor | Accessor[]): Accessor => _.flow(m as Accessor[])
     );
 
-    this.on("sync", this.assignAccessors);
+    this.on("sync", this.assignAccessors.bind(this));
   }
 
   /**
@@ -189,7 +208,7 @@ export default class Model extends BaseModel {
   }
 
   /**
-   * Iterates over elements of data to find instaceof File
+   * Iterates over elements of data to find instanceof File
    *
    * @param {Object} data
    * @returns {Boolean}
