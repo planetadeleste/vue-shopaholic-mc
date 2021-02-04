@@ -171,18 +171,27 @@ export default class Model extends BaseModel {
    * Create a custom request, using option.method, route and data
    *
    * @param {string} sMethod Method key name
-   * @param {string | Record<string, any>} [sRoute] Route key name
-   * @param {Record<string, any>} [obData]
+   * @param {string | Record<string, any> | boolean} [sRoute] Route key name
+   * @param {Record<string, any> | boolean} [obData]
+   * @param {boolean} [bWithoutParams] Set true to prevent extra params on routes with GET, HEAD request type
    * @returns {Promise<Response>}
    */
   async createCustomRequest(
     sMethod: string,
-    sRoute?: string | Record<string, any>,
-    obData?: Record<string, any>
+    sRoute?: string | Record<string, any> | boolean,
+    obData?: Record<string, any> | boolean,
+    bWithoutParams?: boolean
   ): Promise<Response> {
     if (!_.isString(sRoute)) {
-      if (_.isPlainObject(sRoute)) {
+      if (_.isBoolean(sRoute)) {
+        bWithoutParams = sRoute;
+        obData = {};
+      } else if (_.isPlainObject(sRoute)) {
         obData = sRoute;
+      }
+
+      if (_.isUndefined(bWithoutParams)) {
+        bWithoutParams = false;
       }
 
       sRoute = sMethod;
@@ -190,7 +199,7 @@ export default class Model extends BaseModel {
 
     const method = this.getOption(`methods.${sMethod}`);
     const route = this.getRoute(sRoute);
-    const params = this.getRouteParameters();
+    const params = bWithoutParams ? {} : this.getRouteParameters();
     const url = this.getURL(route, params);
 
     return await this.createRequest({ method, url, data: obData }).send();
