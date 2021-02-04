@@ -9,8 +9,8 @@
     "generate": "node ./tools/generate.js"
   },
   "dependencies": {
-    "@bit/planetadeleste.shopaholic-mc.base": "^1.0.46",
-    "@bit/planetadeleste.shopaholic-mc.shopaholic": "^1.0.67",
+    "@bit/planetadeleste.shopaholic-mc.base": "^1.0.49",
+    "@bit/planetadeleste.shopaholic-mc.shopaholic": "^1.0.85",
     "core-js": "^3.6.5",
     "lodash": "^4.17.20",
     "markdown-it": "^12.0.2",
@@ -25,7 +25,7 @@
     "vuex-module-decorators": "^1.0.1"
   },
   "devDependencies": {
-    "@bit/planetadeleste.shopaholic-mc.types.vue-mc": "^1.0.26",
+    "@bit/planetadeleste.shopaholic-mc.types.vue-mc": "^1.0.29",
     "@bit/planetadeleste.shopaholic.types.api": "^0.0.10",
     "@bit/planetadeleste.shopaholic.types.base": "^0.0.4",
     "@types/lodash": "^4.14.165",
