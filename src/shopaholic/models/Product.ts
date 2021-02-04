@@ -95,14 +95,14 @@ export default class Product extends Model {
   }
 
   async stats() {
-    return await this.createCustomRequest("stats", true);
+    return await this.createCustomRequest("stats", []);
   }
 
   /**
    * Get offers from server
    */
   async getOffers() {
-    return await this.createCustomRequest("offers", true);
+    return await this.createCustomRequest("offers", ["id"]);
   }
 
   /**
