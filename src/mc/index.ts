@@ -8,9 +8,10 @@
 import Collection from "./Collection";
 import Model from "./Model";
 import Base from "./Base";
+import File from "./File";
 import { toString, trim, isNil } from "lodash";
 
-export { Base, Collection, Model };
+export { Base, Collection, Model, File };
 
 /**
  * Convert value to string and trim

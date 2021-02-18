@@ -171,8 +171,8 @@ export default class Model extends BaseModel {
    * Create a custom request, using option.method, route and data
    *
    * @param {string} sMethod Method key name
-   * @param {string | Record<string, any> | boolean} [sRoute] Route key name
-   * @param {Record<string, any> | boolean} [obData]
+   * @param {string | Record<string, any> | string[]} [sRoute] Route key name, model data or key params
+   * @param {Record<string, any> | string[]} [obData] Model data or key params
    * @param {string[]} [arParams] Param keys to pick from model attributes
    * @returns {Promise<Response>}
    */
@@ -187,6 +187,9 @@ export default class Model extends BaseModel {
         arParams = sRoute;
         obData = {};
       } else if (_.isPlainObject(sRoute)) {
+        if (_.isArray(obData)) {
+          arParams = obData;
+        }
         obData = sRoute;
       }
 
