@@ -1,7 +1,8 @@
 import { Model } from "@bit/planetadeleste.shopaholic-mc.base";
-import _ from "lodash";
+import { toNumber } from "lodash";
+import { OrderData } from "../types/Order";
 
-export default class Order extends Model {
+class Order extends Model {
   defaults() {
     return {
       id: null,
@@ -45,7 +46,7 @@ export default class Order extends Model {
 
   mutations() {
     return {
-      id: (id: string) => _.toNumber(id) || null
+      id: (id: string) => toNumber(id) || null
     };
   }
 
@@ -56,9 +57,13 @@ export default class Order extends Model {
   routes() {
     return {
       fetch: "orders.show",
-      create: "orders.store",
+      create: "orders.create",
       update: "orders.update",
       delete: "orders.destroy"
     };
   }
 }
+
+interface Order extends Model, OrderData {}
+
+export default Order;

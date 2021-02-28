@@ -1,6 +1,4 @@
-import { Model } from "@bit/planetadeleste.shopaholic-mc.types.vue-mc";
-
-export default class Order extends Model {
+export interface OrderData {
   id: number;
   currency_id: number;
   status_id: number;

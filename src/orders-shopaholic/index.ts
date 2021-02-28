@@ -6,10 +6,13 @@
 
 // COLLECTIONS
 import Orders from "./collections/Orders";
+import Statuses from "./collections/Statuses";
 
-export { Orders };
+export { Orders, Statuses };
 
 // MODELS
+import Cart from "./models/Cart";
 import Order from "./models/Order";
+import Status from "./models/Status";
 
-export { Order };
+export { Cart, Order, Status };
