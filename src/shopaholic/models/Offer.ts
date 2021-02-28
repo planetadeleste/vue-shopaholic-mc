@@ -1,5 +1,6 @@
 import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
 import { toNumber } from "lodash";
+import { OfferData } from "../types/Offer";
 
 /**
  * Offer model
@@ -26,7 +27,7 @@ import { toNumber } from "lodash";
  * @property {array} images
  * @property {array} property
  */
-export default class Offer extends Model {
+class Offer extends Model {
   defaults() {
     return {
       id: null,
@@ -80,3 +81,7 @@ export default class Offer extends Model {
     };
   }
 }
+
+interface Offer extends Model, OfferData {}
+
+export default Offer;

@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@bit/planetadeleste.shopaholic-mc.base": "^1.0.50",
-    "@bit/planetadeleste.shopaholic-mc.shopaholic": "^1.0.87",
+    "@bit/planetadeleste.shopaholic-mc.shopaholic": "^1.0.93",
     "core-js": "^3.6.5",
     "lodash": "^4.17.20",
     "markdown-it": "^12.0.2",

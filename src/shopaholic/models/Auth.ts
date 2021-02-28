@@ -1,6 +1,7 @@
 import { Model } from "@bit/planetadeleste.shopaholic-mc.base";
+import { AuthData } from "../types/Auth";
 
-export default class Auth extends Model {
+class Auth extends Model {
   options() {
     return {
       methods: {
@@ -124,3 +125,7 @@ export default class Auth extends Model {
     return await this.createCustomRequest("check_reset_code", obData);
   }
 }
+
+interface Auth extends Model, AuthData {}
+
+export default Auth;

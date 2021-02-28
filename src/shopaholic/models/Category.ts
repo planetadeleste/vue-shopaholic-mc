@@ -1,25 +1,10 @@
 import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
-import { OCFileData } from "@bit/planetadeleste.shopaholic.types.base";
 import { required, string } from "vue-mc/validation";
 import { toNumber } from "lodash";
 import Categories from "../collections/Categories";
+import { CategoryData } from "../types/Category";
 
-export default class Category extends Model {
-  id!: number;
-  parent_id!: number;
-  active!: boolean;
-  name!: string;
-  code!: string;
-  slug!: string;
-  preview_image!: string;
-  images!: OCFileData[];
-  preview_text!: string;
-  created_at!: string;
-  updated_at!: string;
-  description!: string;
-  external_id!: string;
-  children!: Categories;
-
+class Category extends Model {
   defaults() {
     return {
       id: null,
@@ -71,3 +56,7 @@ export default class Category extends Model {
     };
   }
 }
+
+interface Category extends Model, CategoryData {}
+
+export default Category;

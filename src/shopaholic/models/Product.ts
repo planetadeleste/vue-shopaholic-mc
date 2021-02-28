@@ -1,6 +1,7 @@
 import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
 import { toNumber } from "lodash";
 import { required, string } from "vue-mc/validation";
+import { ProductData } from "../types/Product";
 
 /**
  * @typedef { import("@bit/planetadeleste.shopaholic.types.base").OCFileData } OCFileData
@@ -36,7 +37,7 @@ import { required, string } from "vue-mc/validation";
  * @property {string} thumbnail
  * @property {string} code
  */
-export default class Product extends Model {
+class Product extends Model {
   defaults() {
     return {
       id: null,
@@ -117,3 +118,7 @@ export default class Product extends Model {
     }
   }
 }
+
+interface Product extends Model, ProductData {}
+
+export default Product;

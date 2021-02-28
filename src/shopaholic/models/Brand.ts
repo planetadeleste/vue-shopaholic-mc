@@ -1,23 +1,9 @@
 import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
-import { OCFileData } from "@bit/planetadeleste.shopaholic.types.base";
 import { toNumber } from "lodash";
 import { required, string } from "vue-mc/validation";
+import { BrandData } from "../types/Brand";
 
-export default class Brand extends Model {
-  id!: number;
-  active!: boolean;
-  name!: string;
-  slug!: string;
-  code!: string;
-  preview_text!: string;
-  preview_image!: string;
-  images!: OCFileData[];
-  created_at!: string;
-  updated_at!: string;
-  external_id!: string;
-  description!: string;
-  sort_order!: number;
-
+class Brand extends Model {
   defaults() {
     return {
       id: null,
@@ -61,3 +47,7 @@ export default class Brand extends Model {
     };
   }
 }
+
+interface Brand extends Model, BrandData {}
+
+export default Brand;

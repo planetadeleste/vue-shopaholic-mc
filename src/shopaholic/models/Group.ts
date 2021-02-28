@@ -1,15 +1,9 @@
 import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
 import { toNumber } from "lodash";
 import { required, string } from "vue-mc/validation";
+import { GroupData } from "../types/Group";
 
-export default class Group extends Model {
-  id!: number;
-  name!: string;
-  code!: string;
-  description!: string;
-  created_at!: string;
-  updated_at!: string;
-
+class Group extends Model {
   defaults() {
     return {
       id: null,
@@ -42,3 +36,7 @@ export default class Group extends Model {
     };
   }
 }
+
+interface Group extends Model, GroupData {}
+
+export default Group;

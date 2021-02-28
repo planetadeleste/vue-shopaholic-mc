@@ -2,8 +2,9 @@ import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
 import { Response } from "vue-mc";
 import _ from "lodash";
 import { required, string, email } from "vue-mc/validation";
+import { ProfileData } from "../types/Profile";
 
-export default class Profile extends Model {
+class Profile extends Model {
   defaults() {
     return {
       id: null,
@@ -104,3 +105,7 @@ export default class Profile extends Model {
     return await this.createRequest({ method, url, data }).send();
   }
 }
+
+interface Profile extends Model, ProfileData {}
+
+export default Profile;

@@ -1,23 +1,9 @@
 import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
-import _ from "lodash";
-import UserAddress from "./UserAddress";
+import { toNumber, chain } from "lodash";
 import { required, string, email } from "vue-mc/validation";
+import { UserData } from "../types/User";
 
-export default class User extends Model {
-  id!: number;
-  groups!: string[];
-  email!: string;
-  name!: string;
-  last_name?: string | undefined;
-  middle_name?: string | undefined;
-  phone?: string | undefined;
-  phone_list?: string[] | undefined;
-  socialite_token?: string[] | undefined;
-  avatar?: string | undefined;
-  property?: any[] | undefined;
-  address?: UserAddress[];
-  role?: string;
-
+class User extends Model {
   defaults() {
     return {
       id: null,
@@ -39,7 +25,7 @@ export default class User extends Model {
 
   mutations() {
     return {
-      id: (id: string) => _.toNumber(id) || null,
+      id: (id: string) => toNumber(id) || null,
       name: [cleanStr],
       email: [cleanStr]
     };
@@ -48,7 +34,7 @@ export default class User extends Model {
   accessors() {
     return {
       fullName: () => {
-        return _.chain([this.name, this.middle_name, this.last_name])
+        return chain([this.name, this.middle_name, this.last_name])
           .compact()
           .join(" ")
           .value();
@@ -85,3 +71,7 @@ export default class User extends Model {
     return await this.createCustomRequest("stats");
   }
 }
+
+interface User extends Model, UserData {}
+
+export default User;

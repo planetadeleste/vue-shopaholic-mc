@@ -1,23 +1,8 @@
 import { Model } from "@bit/planetadeleste.shopaholic-mc.base";
+import { UserAddressData } from "../types/UserAddress";
+import { toNumber } from "lodash";
 
-export default class UserAddress extends Model {
-  id!: number;
-  user_id!: number;
-  type!: string;
-  country!: string;
-  state!: string;
-  city!: string;
-  street!: string;
-  house!: string;
-  building!: string;
-  flat!: string;
-  floor!: string;
-  address1!: string;
-  address2!: string;
-  postcode!: string;
-  created_at!: string;
-  updated_at!: string;
-
+class UserAddress extends Model {
   defaults() {
     return {
       id: null,
@@ -38,4 +23,14 @@ export default class UserAddress extends Model {
       updated_at: null
     };
   }
+
+  mutations() {
+    return {
+      id: (id: string) => toNumber(id) || null
+    };
+  }
 }
+
+interface UserAddress extends Model, UserAddressData {}
+
+export default UserAddress;

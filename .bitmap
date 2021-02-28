@@ -133,7 +133,7 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "planetadeleste.shopaholic-mc/shopaholic@1.0.91": {
+    "planetadeleste.shopaholic-mc/shopaholic@1.0.93": {
         "files": [
             {
                 "relativePath": "src/shopaholic/collections/Brands.ts",
@@ -221,6 +221,21 @@
                 "name": "Auth.d.ts"
             },
             {
+                "relativePath": "src/shopaholic/types/Brand.d.ts",
+                "test": false,
+                "name": "Brand.d.ts"
+            },
+            {
+                "relativePath": "src/shopaholic/types/Category.d.ts",
+                "test": false,
+                "name": "Category.d.ts"
+            },
+            {
+                "relativePath": "src/shopaholic/types/Group.d.ts",
+                "test": false,
+                "name": "Group.d.ts"
+            },
+            {
                 "relativePath": "src/shopaholic/types/Offer.d.ts",
                 "test": false,
                 "name": "Offer.d.ts"
@@ -229,6 +244,21 @@
                 "relativePath": "src/shopaholic/types/Product.d.ts",
                 "test": false,
                 "name": "Product.d.ts"
+            },
+            {
+                "relativePath": "src/shopaholic/types/Profile.d.ts",
+                "test": false,
+                "name": "Profile.d.ts"
+            },
+            {
+                "relativePath": "src/shopaholic/types/User.d.ts",
+                "test": false,
+                "name": "User.d.ts"
+            },
+            {
+                "relativePath": "src/shopaholic/types/UserAddress.d.ts",
+                "test": false,
+                "name": "UserAddress.d.ts"
             }
         ],
         "mainFile": "src/shopaholic/index.ts",
@@ -236,7 +266,7 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "planetadeleste.shopaholic-mc/ticket-shopaholic@1.0.92": {
+    "planetadeleste.shopaholic-mc/ticket-shopaholic@1.0.94": {
         "files": [
             {
                 "relativePath": "src/ticket-shopaholic/collections/Categories.ts",
