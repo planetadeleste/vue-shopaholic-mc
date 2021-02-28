@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const { get, find, camelCase, startCase } = require("lodash");
 const { generateTemplateFiles } = require("generate-template-files");
 const { writeImportExport } = require("./writeIndex");

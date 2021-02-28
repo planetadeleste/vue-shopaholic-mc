@@ -36,3 +36,4 @@ export {
 export * from "./HTTP/BaseResponse";
 export * from "./Validation";
 export * from "./Validation/locale";
+export * from "./Result";

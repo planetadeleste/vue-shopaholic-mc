@@ -19,7 +19,8 @@ declare module "vue-mc" {
     ResponseError,
     RequestError,
     ProxyResponse,
-    ValidationError
+    ValidationError,
+    Result
   } from "@bit/planetadeleste.shopaholic-mc.types.vue-mc";
 
   export {
@@ -28,7 +29,8 @@ declare module "vue-mc" {
     ResponseError,
     RequestError,
     ProxyResponse,
-    ValidationError
+    ValidationError,
+    Result
   };
 
   export * from "@bit/planetadeleste.shopaholic-mc.types.vue-mc/HTTP/BaseResponse";

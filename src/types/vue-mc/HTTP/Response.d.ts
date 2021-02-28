@@ -1,8 +1,8 @@
 import { AxiosResponse } from "axios";
-declare class Response {
+declare class Response<T = any | null> {
   response?: AxiosResponse;
   constructor(response?: AxiosResponse);
-  getData(): any | null;
+  getData(): T;
   getStatus(): number;
   getHeaders(): any;
   getValidationErrors(): Record<string, any> | null;

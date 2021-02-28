@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require("fs");
 const dirTree = require("directory-tree");
 const { chain, map, get, join, template, templateSettings } = require("lodash");
