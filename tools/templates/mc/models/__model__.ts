@@ -1,9 +1,8 @@
 import { Model } from "@bit/planetadeleste.shopaholic-mc.base";
-import _ from "lodash";
+import { toNumber } from "lodash";
+import { __model__Data } from "../types/__model__";
 
-export default class __model__ extends Model {
-  id!: number;
-
+class __model__ extends Model {
   defaults() {
     return {
       id: null
@@ -12,7 +11,7 @@ export default class __model__ extends Model {
 
   mutations() {
     return {
-      id: (id: string) => _.toNumber(id) || null
+      id: (id: string) => toNumber(id) || null
     };
   }
 
@@ -29,3 +28,6 @@ export default class __model__ extends Model {
     };
   }
 }
+
+interface __model__ extends Model, __model__Data { }
+export default __model__;

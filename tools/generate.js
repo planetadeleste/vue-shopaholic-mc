@@ -8,7 +8,7 @@ generateTemplateFiles([
     option: "Create Model and Collection",
     defaultCase: "(pascalCase)",
     entry: {
-      folderPath: "./tools/templates/"
+      folderPath: "./tools/templates/mc/"
     },
     stringReplacers: ["__model__", "__collection__", "__plugin__", "__route__"],
     output: {
