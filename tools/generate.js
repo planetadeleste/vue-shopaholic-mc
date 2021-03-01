@@ -1,4 +1,4 @@
-const { get, find, camelCase, startCase } = require("lodash");
+const { get, find, camelCase, startCase, kebabCase } = require("lodash");
 const { generateTemplateFiles } = require("generate-template-files");
 const { writeImportExport } = require("./writeIndex");
 
@@ -22,7 +22,8 @@ generateTemplateFiles([
       const obPlugin = find(arReplacers, { slot: "__plugin__" });
       const sPluginValue = get(obPlugin, "slotValue");
       const sPlugin = startCase(camelCase(sPluginValue)).replace(/ /g, "");
-      writeImportExport(sPluginValue, sPlugin);
+      const sPath = kebabCase(sPluginValue)
+      writeImportExport(sPath, sPlugin);
     }
   }
 ]);

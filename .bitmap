@@ -133,6 +133,59 @@
         "origin": "AUTHORED",
         "exported": true
     },
+    "planetadeleste.shopaholic-mc/orders-shopaholic@1.0.0": {
+        "files": [
+            {
+                "relativePath": "src/orders-shopaholic/collections/Orders.ts",
+                "test": false,
+                "name": "Orders.ts"
+            },
+            {
+                "relativePath": "src/orders-shopaholic/collections/Statuses.ts",
+                "test": false,
+                "name": "Statuses.ts"
+            },
+            {
+                "relativePath": "src/orders-shopaholic/index.ts",
+                "test": false,
+                "name": "index.ts"
+            },
+            {
+                "relativePath": "src/orders-shopaholic/models/Cart.ts",
+                "test": false,
+                "name": "Cart.ts"
+            },
+            {
+                "relativePath": "src/orders-shopaholic/models/Order.ts",
+                "test": false,
+                "name": "Order.ts"
+            },
+            {
+                "relativePath": "src/orders-shopaholic/models/Status.ts",
+                "test": false,
+                "name": "Status.ts"
+            },
+            {
+                "relativePath": "src/orders-shopaholic/types/Cart.d.ts",
+                "test": false,
+                "name": "Cart.d.ts"
+            },
+            {
+                "relativePath": "src/orders-shopaholic/types/Order.d.ts",
+                "test": false,
+                "name": "Order.d.ts"
+            },
+            {
+                "relativePath": "src/orders-shopaholic/types/Status.d.ts",
+                "test": false,
+                "name": "Status.d.ts"
+            }
+        ],
+        "mainFile": "src/orders-shopaholic/index.ts",
+        "trackDir": "src/orders-shopaholic",
+        "origin": "AUTHORED",
+        "exported": true
+    },
     "planetadeleste.shopaholic-mc/shopaholic@1.0.93": {
         "files": [
             {
