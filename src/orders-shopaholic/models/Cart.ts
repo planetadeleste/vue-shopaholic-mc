@@ -46,37 +46,48 @@ export default class Cart extends Model {
    * @description Add offers to cart
    * @author Alvaro Canepa <bfpdevel@gmail.com>
    * @param {CartComponentAddData} obData
+   * @param {Boolean} bReturnData
    * @return {*}  {Promise<Response<Result<CartData>>>}
    * @memberof Cart
    */
-  async add(obData: CartComponentAddData): Promise<Response<Result<CartData>>> {
-    return await this.createCustomRequest("add", obData);
+  async add(
+    obData: CartComponentAddData,
+    bReturnData = false
+  ): Promise<Response<Result<CartComponentItemsData | CartData>>> {
+    const obParams = bReturnData ? { return_data: true } : undefined;
+    return await this.createCustomRequest("add", obData, obParams);
   }
 
   /**
    * @description Updates quantity of offers in cart
    * @author Alvaro Canepa <bfpdevel@gmail.com>
    * @param {CartComponentAddData} obData
+   * @param {Boolean} bReturnData
    * @return {*}  {Promise<Response<Result<CartData>>>}
    * @memberof Cart
    */
   async update(
-    obData: CartComponentAddData
-  ): Promise<Response<Result<CartData>>> {
-    return await this.createCustomRequest("add", obData);
+    obData: CartComponentAddData,
+    bReturnData = false
+  ): Promise<Response<Result<CartComponentItemsData | CartData>>> {
+    const obParams = bReturnData ? { return_data: true } : undefined;
+    return await this.createCustomRequest("add", obData, obParams);
   }
 
   /**
    * @description Removes positions from cart by offer ID or cart position ID
    * @author Alvaro Canepa <bfpdevel@gmail.com>
    * @param {CartComponentRemoveData} obData
+   * @param {Boolean} bReturnData
    * @return {*}  {Promise<Response<Result<CartData>>>}
    * @memberof Cart
    */
   async remove(
-    obData: CartComponentRemoveData
-  ): Promise<Response<Result<CartData>>> {
-    return await this.createCustomRequest("add", obData);
+    obData: CartComponentRemoveData,
+    bReturnData = false
+  ): Promise<Response<Result<CartComponentItemsData | CartData>>> {
+    const obParams = bReturnData ? { return_data: true } : undefined;
+    return await this.createCustomRequest("add", obData, obParams);
   }
 
   /**
