@@ -133,12 +133,17 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "planetadeleste.shopaholic-mc/orders-shopaholic@1.0.0": {
+    "planetadeleste.shopaholic-mc/orders-shopaholic@1.0.2": {
         "files": [
             {
                 "relativePath": "src/orders-shopaholic/collections/Orders.ts",
                 "test": false,
                 "name": "Orders.ts"
+            },
+            {
+                "relativePath": "src/orders-shopaholic/collections/PaymentMethods.ts",
+                "test": false,
+                "name": "PaymentMethods.ts"
             },
             {
                 "relativePath": "src/orders-shopaholic/collections/Statuses.ts",
@@ -161,6 +166,11 @@
                 "name": "Order.ts"
             },
             {
+                "relativePath": "src/orders-shopaholic/models/PaymentMethod.ts",
+                "test": false,
+                "name": "PaymentMethod.ts"
+            },
+            {
                 "relativePath": "src/orders-shopaholic/models/Status.ts",
                 "test": false,
                 "name": "Status.ts"
@@ -174,6 +184,11 @@
                 "relativePath": "src/orders-shopaholic/types/Order.d.ts",
                 "test": false,
                 "name": "Order.d.ts"
+            },
+            {
+                "relativePath": "src/orders-shopaholic/types/PaymentMethod.d.ts",
+                "test": false,
+                "name": "PaymentMethod.d.ts"
             },
             {
                 "relativePath": "src/orders-shopaholic/types/Status.d.ts",

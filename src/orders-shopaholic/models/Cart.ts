@@ -85,7 +85,7 @@ export default class Cart extends Model {
    * @return {*}  {Promise<Response<CartComponentItemsData>>}
    * @memberof Cart
    */
-  async getItems(): Promise<Response<CartComponentItemsData>> {
+  async getItems(): Promise<Response<Result<CartComponentItemsData>>> {
     return await this.createCustomRequest("get");
   }
 }
