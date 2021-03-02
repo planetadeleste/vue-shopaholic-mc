@@ -7,6 +7,11 @@ import {
 } from "../types/Cart";
 import { Response, Result } from "vue-mc";
 
+type ResponseResult<T> = Response<Result<T>>;
+type GetCartResponseType<T> = Promise<
+  ResponseResult<T extends true ? CartData : CartComponentItemsData>
+>;
+
 export default class Cart extends Model {
   options() {
     return {
@@ -35,10 +40,10 @@ export default class Cart extends Model {
   /**
    * @description Get cart data
    * @author Alvaro Canepa <bfpdevel@gmail.com>
-   * @return {*}  {Promise<Response<Result<CartData>>>}
+   * @return {*}  {Promise<ResponseResult<CartData>>}
    * @memberof Cart
    */
-  async getData(): Promise<Response<Result<CartData>>> {
+  async getData(): Promise<ResponseResult<CartData>> {
     return await this.createCustomRequest("data");
   }
 
@@ -47,13 +52,17 @@ export default class Cart extends Model {
    * @author Alvaro Canepa <bfpdevel@gmail.com>
    * @param {CartComponentAddData} obData
    * @param {Boolean} bReturnData
-   * @return {*}  {Promise<Response<Result<CartData>>>}
+   * @return {*}  {GetCartResponseType<T>}
    * @memberof Cart
    */
   async add(
+    obData: CartComponentAddData
+  ): Promise<ResponseResult<CartComponentItemsData>>;
+  async add(
     obData: CartComponentAddData,
-    bReturnData = false
-  ): Promise<Response<Result<CartComponentItemsData | CartData>>> {
+    bReturnData: true
+  ): Promise<ResponseResult<CartData>>;
+  async add(obData: CartComponentAddData, bReturnData?: boolean) {
     const obParams = bReturnData ? { return_data: true } : undefined;
     return await this.createCustomRequest("add", obData, obParams);
   }
@@ -63,13 +72,17 @@ export default class Cart extends Model {
    * @author Alvaro Canepa <bfpdevel@gmail.com>
    * @param {CartComponentAddData} obData
    * @param {Boolean} bReturnData
-   * @return {*}  {Promise<Response<Result<CartData>>>}
+   * @return {*}  {GetCartResponseType<T>}
    * @memberof Cart
    */
   async update(
+    obData: CartComponentAddData
+  ): Promise<ResponseResult<CartComponentItemsData>>;
+  async update(
     obData: CartComponentAddData,
-    bReturnData = false
-  ): Promise<Response<Result<CartComponentItemsData | CartData>>> {
+    bReturnData: true
+  ): Promise<ResponseResult<CartData>>;
+  async update(obData: CartComponentAddData, bReturnData?: boolean) {
     const obParams = bReturnData ? { return_data: true } : undefined;
     return await this.createCustomRequest("add", obData, obParams);
   }
@@ -79,24 +92,28 @@ export default class Cart extends Model {
    * @author Alvaro Canepa <bfpdevel@gmail.com>
    * @param {CartComponentRemoveData} obData
    * @param {Boolean} bReturnData
-   * @return {*}  {Promise<Response<Result<CartData>>>}
+   * @return {*}  {GetCartResponseType<T>}
    * @memberof Cart
    */
   async remove(
+    obData: CartComponentRemoveData
+  ): Promise<ResponseResult<CartComponentItemsData>>;
+  async remove(
     obData: CartComponentRemoveData,
-    bReturnData = false
-  ): Promise<Response<Result<CartComponentItemsData | CartData>>> {
+    bReturnData: true
+  ): Promise<ResponseResult<CartData>>;
+  async remove(obData: CartComponentRemoveData, bReturnData?: boolean) {
     const obParams = bReturnData ? { return_data: true } : undefined;
-    return await this.createCustomRequest("add", obData, obParams);
+    return await this.createCustomRequest("remove", obData, obParams);
   }
 
   /**
    * @description Get cart items
    * @author Alvaro Canepa <bfpdevel@gmail.com>
-   * @return {*}  {Promise<Response<CartComponentItemsData>>}
+   * @return {*}  {Promise<ResponseResults<CartComponentItemsData>>}
    * @memberof Cart
    */
-  async getItems(): Promise<Response<Result<CartComponentItemsData>>> {
+  async getItems(): Promise<ResponseResult<CartComponentItemsData>> {
     return await this.createCustomRequest("get");
   }
 }

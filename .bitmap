@@ -133,7 +133,7 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "planetadeleste.shopaholic-mc/orders-shopaholic@1.0.3": {
+    "planetadeleste.shopaholic-mc/orders-shopaholic@1.0.7": {
         "files": [
             {
                 "relativePath": "src/orders-shopaholic/collections/Orders.ts",
