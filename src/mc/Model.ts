@@ -34,6 +34,15 @@ export default class Model extends BaseModel {
 
     this.compileAccessors();
     this.assignRelations();
+
+    this.on("fetch", (obEvent: Record<string, Model>) => {
+      const obModel = obEvent.target;
+      const attrs = obModel.attributes;
+      if (_.has(attrs, "data") && _.isNil(obModel.id)) {
+        this.clear();
+        this.assign(attrs.data);
+      }
+    });
   }
 
   get relations() {

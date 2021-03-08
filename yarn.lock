@@ -846,30 +846,30 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@bit/planetadeleste.shopaholic-mc.base@1.0.53", "@bit/planetadeleste.shopaholic-mc.base@^1.0.50":
-  version "1.0.53"
-  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.base/-/planetadeleste.shopaholic-mc.base-1.0.53.tgz#567a2c95e79ab03d9ecd6b5d06266d75cda5d493"
-  integrity sha1-VnosleeasD2ezWtdBiZtdc2l1JM=
+"@bit/planetadeleste.shopaholic-mc.base@1.0.54", "@bit/planetadeleste.shopaholic-mc.base@^1.0.54":
+  version "1.0.54"
+  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.base/-/planetadeleste.shopaholic-mc.base-1.0.54.tgz#39cf790e1c7bd49383c51d185d686bc0a8f84ef1"
+  integrity sha1-Oc95Dhx71JODxR0YXWhrwKj4TvE=
   dependencies:
     lodash "^4.17.20"
     object-to-formdata "^4.1.0"
     vue-mc "^0.6.0"
 
-"@bit/planetadeleste.shopaholic-mc.shopaholic@^1.0.93":
-  version "1.0.93"
-  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.shopaholic/-/planetadeleste.shopaholic-mc.shopaholic-1.0.93.tgz#6fea389502021529f43f6e760d4af5a07b7df82f"
-  integrity sha1-b+o4lQICFSn0P252DUr1oHt9+C8=
+"@bit/planetadeleste.shopaholic-mc.shopaholic@^1.0.95":
+  version "1.0.95"
+  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.shopaholic/-/planetadeleste.shopaholic-mc.shopaholic-1.0.95.tgz#b808df26a5a6835c62d8a90d5196b72732d2e6e2"
+  integrity sha1-uAjfJqWmg1xi2KkNUZa3JzLS5uI=
   dependencies:
-    "@bit/planetadeleste.shopaholic-mc.base" "1.0.53"
+    "@bit/planetadeleste.shopaholic-mc.base" "1.0.54"
     lodash "^4.17.20"
     vue-mc "^0.6.0"
 
-"@bit/planetadeleste.shopaholic-mc.types.vue-mc@^1.0.30":
-  version "1.0.33"
-  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.types.vue-mc/-/planetadeleste.shopaholic-mc.types.vue-mc-1.0.33.tgz#38be2f9f58b96cd3a21d9aeb72cbe7ef363be2c3"
-  integrity sha1-OL4vn1i5bNOiHZrrcsvn7zY74sM=
+"@bit/planetadeleste.shopaholic-mc.types.vue-mc@^1.0.34":
+  version "1.0.34"
+  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.types.vue-mc/-/planetadeleste.shopaholic-mc.types.vue-mc-1.0.34.tgz#994e4545efabb488a63618fd22ba3b4321a00b7d"
+  integrity sha1-mU5FRe+rtIimNhj9Iro7QyGgC30=
   dependencies:
-    "@bit/planetadeleste.shopaholic-mc.base" "1.0.53"
+    "@bit/planetadeleste.shopaholic-mc.base" "1.0.54"
 
 "@bit/planetadeleste.shopaholic.types.api@^0.0.10":
   version "0.0.10"
