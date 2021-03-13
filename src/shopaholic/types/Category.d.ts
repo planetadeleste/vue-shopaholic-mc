@@ -1,4 +1,4 @@
-import { OCFileData } from "@bit/planetadeleste.shopaholic.types.base";
+import { FileData } from "@bit/planetadeleste.shopaholic-mc.base/types/File";
 
 export interface CategoryData {
   id: number;
@@ -8,7 +8,7 @@ export interface CategoryData {
   code: string;
   slug: string;
   preview_image: string;
-  images: OCFileData[];
+  images: FileData[];
   preview_text: string;
   created_at: string;
   updated_at: string;

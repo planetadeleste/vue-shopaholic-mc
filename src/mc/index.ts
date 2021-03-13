@@ -23,3 +23,6 @@ export const cleanStr = (sVal?: string) => {
   }
   return trim(toString(sVal));
 };
+
+import FileData from "./types/File";
+export { FileData };

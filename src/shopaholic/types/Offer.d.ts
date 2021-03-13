@@ -1,4 +1,4 @@
-import { OCFileData } from "@bit/planetadeleste.shopaholic.types.base";
+import { FileData } from "@bit/planetadeleste.shopaholic-mc.base/types/File";
 
 export interface OfferData {
   id: number;
@@ -18,7 +18,7 @@ export interface OfferData {
   active: number;
   description: string;
   preview_image: string;
-  images: OCFileData[];
+  images: FileData[];
   property: any[];
 
   // TicketShopaholic plugin
