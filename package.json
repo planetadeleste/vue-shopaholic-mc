@@ -104,6 +104,11 @@
           "@bit/planetadeleste.shopaholic.types.base": "+",
           "@bit/planetadeleste.shopaholic.types.api": "+"
         },
+        "compilerOptions": {
+          "rootDirs": [
+            "src/mc"
+          ]
+        },
         "propagate": false
       }
     },

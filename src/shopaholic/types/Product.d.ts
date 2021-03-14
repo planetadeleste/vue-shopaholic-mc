@@ -1,4 +1,4 @@
-import { FileData } from "@bit/planetadeleste.shopaholic-mc.base/types/File";
+import { FileData } from "@bit/planetadeleste.shopaholic-mc.base/types";
 import { OfferData } from "./Offer";
 
 export interface ProductData {
