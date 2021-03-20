@@ -196,7 +196,14 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
     const obFilters = this.get("filters", {});
     _.assign(obFilters, filters);
 
-    this.set("filters", obFilters);
+    this.set(
+      "filters",
+      _.pickBy(obFilters, (sValue: any) => {
+        return _.isNumber(sValue)
+          ? true
+          : !_.isNil(sValue) && !_.isEmpty(sValue);
+      })
+    );
 
     return this;
   }
