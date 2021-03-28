@@ -14,5 +14,5 @@ export interface CategoryData {
   updated_at: string;
   description: string;
   external_id: string;
-  children: Categories;
+  children: CategoryData[];
 }

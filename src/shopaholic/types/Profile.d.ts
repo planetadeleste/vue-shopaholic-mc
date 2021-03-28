@@ -14,3 +14,16 @@ export interface ProfileData {
   address: UserAddressData;
   role: string;
 }
+
+export type UserRegisterOptions = {
+  name: string;
+  email: string;
+  password: string;
+  password_confirmation: string;
+};
+
+export interface ResponseLoginRegisterData {
+  expires_in: number;
+  token: string;
+  user?: ProfileData;
+}

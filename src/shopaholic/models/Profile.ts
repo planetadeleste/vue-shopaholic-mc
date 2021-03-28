@@ -2,7 +2,13 @@ import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
 import { Response } from "vue-mc";
 import _ from "lodash";
 import { required, string, email } from "vue-mc/validation";
-import { ProfileData } from "../types/Profile";
+import {
+  ProfileData,
+  UserRegisterOptions,
+  ResponseLoginRegisterData
+} from "../types/Profile";
+
+type RecordProfileData = UserRegisterOptions & Record<string, any>;
 
 class Profile extends Model {
   defaults() {
@@ -53,7 +59,8 @@ class Profile extends Model {
       methods: {
         avatar: "GET",
         login: "POST",
-        logout: "POST"
+        logout: "POST",
+        register: "POST"
       }
     };
   }
@@ -66,28 +73,28 @@ class Profile extends Model {
       delete: "profile.destroy",
       avatar: "profile.avatar",
       login: "auth.login",
-      logout: "auth.invalidate"
+      logout: "auth.invalidate",
+      register: "auth.register"
     };
   }
 
   async loadAvatar(): Promise<Response> {
-    const method = this.getOption("methods.avatar");
-    const route = this.getRoute("avatar");
-    const params = this.getRouteParameters();
-    const url = this.getURL(route, params);
-    const data = {};
-
-    return await this.createRequest({ method, url, data }).send();
+    return await this.createCustomRequest("avatar", []);
   }
 
-  async login(login: string, password: string) {
-    const method = this.getOption("methods.login");
-    const route = this.getRoute("login");
-    const params = this.getRouteParameters();
-    const url = this.getURL(route, params);
+  async login(
+    login: string,
+    password: string
+  ): Promise<Response<ResponseLoginRegisterData>> {
     const data = { email: login, password: password };
 
-    return await this.createRequest({ method, url, data }).send();
+    return await this.createCustomRequest("login", data);
+  }
+
+  async register(
+    obData: RecordProfileData
+  ): Promise<Response<ResponseLoginRegisterData>> {
+    return await this.createCustomRequest("register", obData);
   }
 
   async logout() {
@@ -96,13 +103,9 @@ class Profile extends Model {
       return Promise.reject("token_not_provided");
     }
 
-    const method = this.getOption("methods.logout");
-    const route = this.getRoute("logout");
-    const params = this.getRouteParameters();
-    const url = this.getURL(route, params);
     const data = { token: sToken };
 
-    return await this.createRequest({ method, url, data }).send();
+    return await this.createCustomRequest("logout", data);
   }
 }
 
