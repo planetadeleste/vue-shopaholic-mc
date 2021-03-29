@@ -5,9 +5,9 @@ import {
   CartComponentAddData,
   CartComponentRemoveData
 } from "../types/Cart";
-import { Response, Result } from "vue-mc";
+import { Response } from "vue-mc";
 
-type ResponseResult<T> = Response<Result<T>>;
+type ResponseResult<T> = Response<T>;
 type GetCartResponseType<T> = Promise<
   ResponseResult<T extends true ? CartData : CartComponentItemsData>
 >;
