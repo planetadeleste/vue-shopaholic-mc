@@ -4,7 +4,29 @@ import { Model as BaseModel, RequestOptions, Response } from "vue-mc";
 import { AxiosRequestConfig } from "axios";
 import Request from "./Request";
 import { serialize } from "object-to-formdata";
-import _ from "lodash";
+import {
+  isUndefined,
+  isBoolean,
+  set,
+  isPlainObject,
+  isObjectLike,
+  has,
+  isNil,
+  unionBy,
+  each,
+  cloneDeep,
+  mapValues,
+  flow,
+  invoke,
+  isString,
+  isArray,
+  isEmpty,
+  pick,
+  isObject,
+  forEach,
+  defaultTo,
+  assign
+} from "lodash";
 
 type Constructor<T> = new (...args: any[]) => T;
 
@@ -16,10 +38,11 @@ export interface RelationConfig {
 }
 
 export default class Model extends BaseModel {
-  _accessors!: Record<string, Accessor>;
-  _relations!: Record<string, Constructor<Model>>;
-  _baseClass!: Base;
-  _base() {
+  private _accessors!: Record<string, Accessor>;
+  private _relations!: Record<string, Constructor<Model>>;
+  private _baseClass!: Base;
+  private _silently!: boolean;
+  private _base() {
     if (!this._baseClass) {
       this._baseClass = new Base();
     }
@@ -31,6 +54,7 @@ export default class Model extends BaseModel {
     this._base();
     Vue.set(this, "_relations", {});
     Vue.set(this, "_accessors", {});
+    this._silently = false;
 
     this.compileAccessors();
     this.assignRelations();
@@ -38,7 +62,7 @@ export default class Model extends BaseModel {
     this.on("fetch", (obEvent: Record<string, Model>) => {
       const obModel = obEvent.target;
       const attrs = obModel.attributes;
-      if (_.has(attrs, "data") && _.isNil(obModel.id)) {
+      if (has(attrs, "data") && isNil(obModel.id)) {
         this.clear();
         this.assign(attrs.data);
       }
@@ -49,16 +73,27 @@ export default class Model extends BaseModel {
     return this._relations;
   }
 
+  silenty<T extends Model>(this: T, bEvent?: boolean): T {
+    if (isUndefined(bEvent) || !isBoolean(bEvent)) {
+      this._silently = true;
+    } else if (isBoolean(bEvent)) {
+      this._silently = bEvent;
+    }
+
+    return this;
+  }
+
   definedRelations(): Record<string, RelationConfig> {
     return {};
   }
 
-  setRelation(
+  setRelation<T extends Model>(
+    this: T,
     name: string,
     config: RelationConfig,
     relation: Record<string, any>
-  ) {
-    if (relation && _.isPlainObject(relation)) {
+  ): T {
+    if (relation && isPlainObject(relation)) {
       relation = new config.class(relation);
     }
 
@@ -76,11 +111,15 @@ export default class Model extends BaseModel {
     return this._relations[name];
   }
 
-  registerRelation(name: string, config: RelationConfig) {
-    const names = _.unionBy([name], config.aliases);
+  registerRelation<T extends Model>(
+    this: T,
+    name: string,
+    config: RelationConfig
+  ): T {
+    const names = unionBy([name], config.aliases);
 
-    _.each(names, (item: string) => {
-      const exist = !_.isUndefined(this[item]); // I can't find how to set Relations before super() method.
+    each(names, (item: string) => {
+      const exist = !isUndefined(this[item]); // I can't find how to set Relations before super() method.
 
       Object.defineProperty(this, item, {
         get: () => this.getRelation(name),
@@ -88,7 +127,7 @@ export default class Model extends BaseModel {
       });
 
       if (exist) {
-        this[item] = _.cloneDeep(this.get(item));
+        set(this, item, cloneDeep(this.get(item)));
         this.unset(item);
       }
     });
@@ -97,7 +136,7 @@ export default class Model extends BaseModel {
   }
 
   assignRelations() {
-    _.each(this.definedRelations(), (config, name) => {
+    each(this.definedRelations(), (config, name) => {
       this.registerRelation(name, config);
     });
   }
@@ -132,9 +171,9 @@ export default class Model extends BaseModel {
    * Compiles all accessors into pipelines that can be executed quickly.
    */
   compileAccessors(): void {
-    this._accessors = _.mapValues(
+    this._accessors = mapValues(
       this.accessors(),
-      (m: Accessor | Accessor[]): Accessor => _.flow(m as Accessor[])
+      (m: Accessor | Accessor[]): Accessor => flow(m as Accessor[])
     );
 
     this.on("sync", this.assignAccessors.bind(this));
@@ -144,7 +183,7 @@ export default class Model extends BaseModel {
    * Sync all accessors with model attributes
    */
   assignAccessors(): void {
-    _.each(this._accessors, (fAccessor: Accessor, sKey) => {
+    each(this._accessors, (fAccessor: Accessor, sKey) => {
       this.set(sKey, fAccessor());
     });
   }
@@ -164,7 +203,7 @@ export default class Model extends BaseModel {
       return sMessage;
     }
 
-    _.invoke(Base.$flashModule, sType, sMessage);
+    invoke(Base.$flashModule, sType, sMessage);
     return sMessage;
   }
 
@@ -191,12 +230,12 @@ export default class Model extends BaseModel {
     obData?: Record<string, any> | string[],
     arParams?: string[]
   ): Promise<Response> {
-    if (!_.isString(sRoute)) {
-      if (_.isArray(sRoute)) {
+    if (!isString(sRoute)) {
+      if (isArray(sRoute)) {
         arParams = sRoute;
         obData = {};
-      } else if (_.isPlainObject(sRoute)) {
-        if (_.isArray(obData)) {
+      } else if (isPlainObject(sRoute)) {
+        if (isArray(obData)) {
           arParams = obData;
         }
         obData = sRoute;
@@ -205,15 +244,23 @@ export default class Model extends BaseModel {
       sRoute = sMethod;
     }
 
-    if (_.isUndefined(arParams)) {
+    if (isUndefined(arParams)) {
       arParams = [];
+    }
+
+    if (isUndefined(obData)) {
+      obData = {};
+    }
+
+    if (this._silently) {
+      set(obData, "silently", this._silently);
     }
 
     const method = this.getOption(`methods.${sMethod}`);
     const route = this.getRoute(sRoute);
-    const params = _.isEmpty(arParams)
+    const params = isEmpty(arParams)
       ? {}
-      : _.pick(this.getRouteParameters(), arParams);
+      : pick(this.getRouteParameters(), arParams);
     const url = this.getURL(route, params);
 
     return await this.createRequest({ method, url, data: obData }).send();
@@ -243,8 +290,8 @@ export default class Model extends BaseModel {
       return true;
     }
 
-    if (_.isArray(data) || _.isObject(data)) {
-      _.forEach(data, (item: any) => {
+    if (isArray(data) || isObject(data)) {
+      forEach(data, (item: any) => {
         if (this.hasFileUpload(item)) {
           hasFile = true;
         }
@@ -270,13 +317,13 @@ export default class Model extends BaseModel {
    * @returns {Promise}
    */
   store(options: RequestOptions = {}) {
-    let data = _.defaultTo(options.data, this.getSaveData());
+    let data = defaultTo(options.data, this.getSaveData());
 
     if (this.hasFileUpload(data)) {
       data = serialize(data, { indices: true, booleansAsIntegers: true });
     }
 
-    _.assign(options, { data });
+    assign(options, { data });
 
     return this.save(options);
   }

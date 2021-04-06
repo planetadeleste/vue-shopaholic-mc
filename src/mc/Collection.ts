@@ -6,7 +6,19 @@ import {
 } from "vue-mc";
 import { AxiosRequestConfig } from "axios";
 import Request from "./Request";
-import _ from "lodash";
+import {
+  get,
+  invoke,
+  isString,
+  isPlainObject,
+  isNil,
+  has,
+  isEmpty,
+  assign,
+  pickBy,
+  isNumber,
+  map
+} from "lodash";
 import Base from "./Base";
 import {
   ApiLinksResponse,
@@ -32,7 +44,7 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
     this._base();
 
     this.on("fetch", (obEvent: Record<string, any>) => {
-      const sError = _.get(obEvent, "error");
+      const sError = get(obEvent, "error");
       if (sError) {
         this.alert(sError);
       }
@@ -54,7 +66,7 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
       return sMessage;
     }
 
-    _.invoke(Base.$flashModule, sType, sMessage);
+    invoke(Base.$flashModule, sType, sMessage);
     return sMessage;
   }
 
@@ -79,8 +91,8 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
     sRoute?: string | Record<string, any>,
     obData?: Record<string, any>
   ): Promise<Response | null | void> {
-    if (!_.isString(sRoute)) {
-      if (_.isPlainObject(sRoute)) {
+    if (!isString(sRoute)) {
+      if (isPlainObject(sRoute)) {
         obData = sRoute;
       }
 
@@ -108,24 +120,24 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
     // An empty, non-array response indicates that we didn't intend to send
     // any models in the response. This means that the current models are
     // already up to date, as no changes are necessary.
-    if (_.isNil(models) || models === "") {
+    if (isNil(models) || models === "") {
       return null;
     }
 
     // Add pagination meta/links properties
-    if (_.has(models, "meta")) {
-      this._meta = _.get(models, "meta");
+    if (has(models, "meta")) {
+      this._meta = get(models, "meta");
       this.page(this._meta.current_page);
     }
 
-    if (_.has(models, "links")) {
-      this._links = _.get(models, "links");
+    if (has(models, "links")) {
+      this._links = get(models, "links");
     }
 
     // We're making an assumption here that paginated models are returned
     // within the "data" field of the response.
-    if (this.isPaginated() || _.has(models, "data")) {
-      return _.get(models, "data", models);
+    if (this.isPaginated() || has(models, "data")) {
+      return get(models, "data", models);
     }
 
     return models;
@@ -140,7 +152,7 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
    * @returns {number}
    */
   getCurrentPage<T extends Collection>(this: T): number {
-    return _.get(this._meta, "current_page", 1);
+    return get(this._meta, "current_page", 1);
   }
 
   /**
@@ -148,7 +160,7 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
    * @returns {number}
    */
   getLastPage<T extends Collection>(this: T): number {
-    return _.get(this._meta, "last_page", 1);
+    return get(this._meta, "last_page", 1);
   }
 
   /**
@@ -156,7 +168,7 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
    * @returns {number}
    */
   getTotalItems<T extends Collection>(this: T): number {
-    return _.get(this._meta, "total", 0);
+    return get(this._meta, "total", 0);
   }
 
   /**
@@ -185,23 +197,21 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
    * @returns {Collection}
    */
   filterBy<T extends Collection>(this: T, filters: object): T {
-    if (_.isEmpty(filters) || !_.isPlainObject(filters)) {
+    if (isEmpty(filters) || !isPlainObject(filters)) {
       return this;
     }
 
-    if (_.has(filters, "filters")) {
-      filters = _.get(filters, "filters");
+    if (has(filters, "filters")) {
+      filters = get(filters, "filters");
     }
 
     const obFilters = this.get("filters", {});
-    _.assign(obFilters, filters);
+    assign(obFilters, filters);
 
     this.set(
       "filters",
-      _.pickBy(obFilters, (sValue: any) => {
-        return _.isNumber(sValue)
-          ? true
-          : !_.isNil(sValue) && !_.isEmpty(sValue);
+      pickBy(obFilters, (sValue: any) => {
+        return isNumber(sValue) ? true : !isNil(sValue) && !isEmpty(sValue);
       })
     );
 
@@ -223,6 +233,6 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
    * @returns {Record<string, any>} A native representation of this collection models that will determine the contents of JSON.stringify(model).
    */
   getModelList<T extends Collection>(this: T): Record<string, any> {
-    return _.map(this.getModels(), (obModel: A) => obModel.toJSON());
+    return map(this.getModels(), (obModel: A) => obModel.toJSON());
   }
 }
