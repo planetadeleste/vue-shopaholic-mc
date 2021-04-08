@@ -47,7 +47,11 @@ declare class Model extends Base {
    * @param  {Collection} [collection]  Collection that this model belongs to.
    * @param  {Object}     [options]     Options to set on the model.
    */
-  constructor(attributes?: {}, collection?: Collection | null, options?: {});
+  constructor(
+    attributes?: Record<string, any>,
+    collection?: Collection | null,
+    options?: Record<string, any>
+  );
   /**
    * Creates a copy of this model, with the same attributes and options. The
    * clone will also belong to the same collections as the subject.

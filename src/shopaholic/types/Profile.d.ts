@@ -13,6 +13,8 @@ export interface ProfileData {
   property: Record<string, any>;
   address: UserAddressData;
   role: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export type UserRegisterOptions = {

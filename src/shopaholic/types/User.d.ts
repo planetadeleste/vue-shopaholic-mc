@@ -14,4 +14,6 @@ export interface UserData {
   property: any[] | undefined;
   address: UserAddressData[];
   role: string;
+  created_at?: string;
+  updated_at?: string;
 }

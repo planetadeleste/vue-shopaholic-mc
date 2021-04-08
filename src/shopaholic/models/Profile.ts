@@ -5,7 +5,7 @@ import { required, string, email } from "vue-mc/validation";
 import {
   ProfileData,
   UserRegisterOptions,
-  ResponseLoginRegisterData
+  ResponseLoginRegisterData,
 } from "../types/Profile";
 
 type RecordProfileData = UserRegisterOptions & Record<string, any>;
@@ -24,7 +24,9 @@ class Profile extends Model {
       avatar: null,
       property: [],
       address: null,
-      role: null
+      role: null,
+      created_at: null,
+      updated_at: null,
     };
   }
 
@@ -32,7 +34,7 @@ class Profile extends Model {
     return {
       id: (id: string) => _.toNumber(id) || null,
       name: [cleanStr],
-      email: [cleanStr]
+      email: [cleanStr],
     };
   }
 
@@ -43,14 +45,14 @@ class Profile extends Model {
           .compact()
           .join(" ")
           .value();
-      }
+      },
     };
   }
 
   validation() {
     return {
       name: required.and(string),
-      email: required.and(email)
+      email: required.and(email),
     };
   }
 
@@ -60,8 +62,8 @@ class Profile extends Model {
         avatar: "GET",
         login: "POST",
         logout: "POST",
-        register: "POST"
-      }
+        register: "POST",
+      },
     };
   }
 
@@ -74,7 +76,7 @@ class Profile extends Model {
       avatar: "profile.avatar",
       login: "auth.login",
       logout: "auth.invalidate",
-      register: "auth.register"
+      register: "auth.register",
     };
   }
 

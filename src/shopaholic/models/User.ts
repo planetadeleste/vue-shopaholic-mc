@@ -4,7 +4,7 @@ import { required, string, email } from "vue-mc/validation";
 import { UserData } from "../types/User";
 
 class User extends Model {
-  defaults() {
+  defaults(): Record<string, any> {
     return {
       id: null,
       is_activated: false,
@@ -19,51 +19,53 @@ class User extends Model {
       property: [],
       address: null,
       password: null,
-      password_confirmation: null
+      password_confirmation: null,
+      created_at: null,
+      updated_at: null,
     };
   }
 
-  mutations() {
+  mutations(): Record<string, any> {
     return {
       id: (id: string) => toNumber(id) || null,
       name: [cleanStr],
-      email: [cleanStr]
+      email: [cleanStr],
     };
   }
 
-  accessors() {
+  accessors(): Record<string, any> {
     return {
       fullName: () => {
         return chain([this.name, this.middle_name, this.last_name])
           .compact()
           .join(" ")
           .value();
-      }
+      },
     };
   }
 
-  validation() {
+  validation(): Record<string, any> {
     return {
       name: required.and(string),
-      email: required.and(email)
+      email: required.and(email),
     };
   }
 
-  options() {
+  options(): Record<string, any> {
     return {
       methods: {
-        stats: "GET"
-      }
+        stats: "GET",
+      },
     };
   }
 
-  routes() {
+  routes(): Record<string, any> {
     return {
       fetch: "users.show",
       create: "users.store",
       update: "users.update",
       delete: "users.destroy",
-      stats: "users.stats"
+      stats: "users.stats",
     };
   }
 

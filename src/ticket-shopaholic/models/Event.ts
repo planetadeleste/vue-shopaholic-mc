@@ -1,7 +1,7 @@
 import { Model } from "@bit/planetadeleste.shopaholic-mc.base";
 import { Product } from "@bit/planetadeleste.shopaholic-mc.shopaholic";
 import { required, number } from "vue-mc/validation";
-import _ from "lodash";
+import { toNumber } from "lodash";
 
 export default class Event extends Model {
   id!: number;
@@ -17,20 +17,20 @@ export default class Event extends Model {
   defaults() {
     return {
       id: null,
-      product_id: null
+      product_id: null,
     };
   }
 
   mutations() {
     return {
-      id: (id: string) => _.toNumber(id) || null,
-      product_id: (id: string) => _.toNumber(id) || null
+      id: (id: string) => toNumber(id) || null,
+      product_id: (id: string) => toNumber(id) || null,
     };
   }
 
   validation() {
     return {
-      product_id: required.and(number)
+      product_id: required.and(number),
     };
   }
 
@@ -39,7 +39,7 @@ export default class Event extends Model {
       fetch: "events.show",
       create: "events.store",
       update: "events.update",
-      delete: "events.destroy"
+      delete: "events.destroy",
     };
   }
 }
