@@ -883,9 +883,9 @@
     vue-mc "^0.6.0"
 
 "@bit/planetadeleste.shopaholic-mc.shopaholic@^1.0.114":
-  version "1.0.114"
-  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.shopaholic/-/planetadeleste.shopaholic-mc.shopaholic-1.0.114.tgz#9d0a58d6a47b15a23899bd80880dfb861981ac5a"
-  integrity sha1-nQpY1qR7FaI4mb2AiA37hhmBrFo=
+  version "1.0.115"
+  resolved "https://node.bit.dev/planetadeleste.shopaholic-mc.shopaholic/-/planetadeleste.shopaholic-mc.shopaholic-1.0.115.tgz#4882c1b330c32fc2d2bd7445bda92d5aa05736bc"
+  integrity sha1-SILBszDDL8LSvXRFvaktWqBXNrw=
   dependencies:
     "@bit/planetadeleste.shopaholic-mc.base" "1.0.66"
     lodash "^4.17.20"

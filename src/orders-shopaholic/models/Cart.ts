@@ -3,17 +3,14 @@ import {
   CartData,
   CartComponentItemsData,
   CartComponentAddData,
-  CartComponentRemoveData
+  CartComponentRemoveData,
 } from "../types/Cart";
 import { Response } from "vue-mc";
 
 type ResponseResult<T> = Response<T>;
-type GetCartResponseType<T> = Promise<
-  ResponseResult<T extends true ? CartData : CartComponentItemsData>
->;
 
 export default class Cart extends Model {
-  options() {
+  options(): Record<string, any> {
     return {
       methods: {
         data: "GET",
@@ -21,19 +18,19 @@ export default class Cart extends Model {
         payment_method_list: "GET",
         add: "POST",
         update: "POST",
-        remove: "POST"
-      }
+        remove: "POST",
+      },
     };
   }
 
-  routes() {
+  routes(): Record<string, any> {
     return {
       data: "cart.data",
       get: "cart.get",
       payment_method_list: "cart.payment_method_list",
       add: "cart.add",
       update: "cart.update",
-      remove: "cart.remove"
+      remove: "cart.remove",
     };
   }
 
@@ -58,10 +55,12 @@ export default class Cart extends Model {
   async add(
     obData: CartComponentAddData
   ): Promise<ResponseResult<CartComponentItemsData>>;
+
   async add(
     obData: CartComponentAddData,
     bReturnData: true
   ): Promise<ResponseResult<CartData>>;
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   async add(obData: CartComponentAddData, bReturnData?: boolean) {
     const obParams = bReturnData ? { return_data: true } : undefined;
     return await this.createCustomRequest("add", obData, obParams);
@@ -78,13 +77,16 @@ export default class Cart extends Model {
   async update(
     obData: CartComponentAddData
   ): Promise<ResponseResult<CartComponentItemsData>>;
+
   async update(
     obData: CartComponentAddData,
     bReturnData: true
   ): Promise<ResponseResult<CartData>>;
+
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   async update(obData: CartComponentAddData, bReturnData?: boolean) {
     const obParams = bReturnData ? { return_data: true } : undefined;
-    return await this.createCustomRequest("add", obData, obParams);
+    return await this.createCustomRequest("update", obData, obParams);
   }
 
   /**
@@ -98,10 +100,13 @@ export default class Cart extends Model {
   async remove(
     obData: CartComponentRemoveData
   ): Promise<ResponseResult<CartComponentItemsData>>;
+
   async remove(
     obData: CartComponentRemoveData,
     bReturnData: true
   ): Promise<ResponseResult<CartData>>;
+
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   async remove(obData: CartComponentRemoveData, bReturnData?: boolean) {
     const obParams = bReturnData ? { return_data: true } : undefined;
     return await this.createCustomRequest("remove", obData, obParams);

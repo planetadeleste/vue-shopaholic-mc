@@ -7,6 +7,10 @@ import {
   UserRegisterOptions,
   ResponseLoginRegisterData,
 } from "../types/Profile";
+import {
+  UserAddressData,
+  UserAddressUpdateResponse,
+} from "../types/UserAddress";
 
 type RecordProfileData = UserRegisterOptions & Record<string, any>;
 
@@ -63,6 +67,9 @@ class Profile extends Model {
         login: "POST",
         logout: "POST",
         register: "POST",
+        addAddress: "POST",
+        updateAddress: "POST",
+        removeAddress: "POST",
       },
     };
   }
@@ -74,6 +81,11 @@ class Profile extends Model {
       update: "profile.update",
       delete: "profile.destroy",
       avatar: "profile.avatar",
+
+      addAddress: "profile.address.add",
+      updateAddress: "profile.address.update",
+      removeAddress: "profile.address.remove",
+
       login: "auth.login",
       logout: "auth.invalidate",
       register: "auth.register",
@@ -82,6 +94,20 @@ class Profile extends Model {
 
   async loadAvatar(): Promise<Response> {
     return await this.createCustomRequest("avatar", []);
+  }
+
+  async addAddress(
+    obAddress: UserAddressData
+  ): Promise<Response<UserAddressUpdateResponse>> {
+    return await this.createCustomRequest("addAddress", obAddress);
+  }
+
+  async updateAddress(obAddress: UserAddressData): Promise<Response> {
+    return await this.createCustomRequest("updateAddress", obAddress);
+  }
+
+  async removeAddress(iAddressId: number): Promise<Response> {
+    return await this.createCustomRequest("removeAddress", { id: iAddressId });
   }
 
   async login(

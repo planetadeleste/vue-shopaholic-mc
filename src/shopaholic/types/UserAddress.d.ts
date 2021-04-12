@@ -16,3 +16,7 @@ export interface UserAddressData {
   created_at: string;
   updated_at: string;
 }
+
+export interface UserAddressUpdateResponse {
+  id: number;
+}

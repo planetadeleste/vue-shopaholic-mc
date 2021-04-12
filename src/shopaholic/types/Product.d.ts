@@ -1,10 +1,12 @@
 import { FileData } from "@bit/planetadeleste.shopaholic-mc.base/types";
+import { BrandData } from "./Brand";
 import { OfferData } from "./Offer";
 
 export interface ProductData {
   id: number;
   category_id: number;
   brand_id: number;
+  brand: BrandData;
   category: Record<string, any>;
   slug: string;
   name: string;

@@ -11,7 +11,7 @@ export interface ProfileData {
   phone_list: string[];
   avatar: string;
   property: Record<string, any>;
-  address: UserAddressData;
+  address: UserAddressData[];
   role: string;
   created_at?: string;
   updated_at?: string;
