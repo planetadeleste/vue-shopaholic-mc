@@ -17,7 +17,7 @@ export { Base, Collection, Model, File };
  * Convert value to string and trim
  * @param {string} [sVal]
  */
-export const cleanStr = (sVal?: string) => {
+export const cleanStr = (sVal?: string): string | null => {
   if (isNil(sVal)) {
     return null;
   }

@@ -2,7 +2,8 @@ import {
   Collection as BaseCollection,
   Model,
   Response,
-  ResponseError
+  ResponseError,
+  RouteResolver,
 } from "vue-mc";
 import { AxiosRequestConfig } from "axios";
 import Request from "./Request";
@@ -17,22 +18,22 @@ import {
   assign,
   pickBy,
   isNumber,
-  map
+  map,
 } from "lodash";
 import Base from "./Base";
 import {
   ApiLinksResponse,
-  ApiMetaResponse
+  ApiMetaResponse,
 } from "@bit/planetadeleste.shopaholic.types.api";
 
-export default class Collection<A extends Model = Model> extends BaseCollection<
-  A
-> {
+export default class Collection<
+  A extends Model = Model
+> extends BaseCollection<A> {
   _baseClass!: Base;
   _links: ApiLinksResponse | Record<string, any> = {};
   _meta: ApiMetaResponse | Record<string, any> = {};
 
-  _base() {
+  _base(): Base {
     if (!this._baseClass) {
       this._baseClass = new Base();
     }
@@ -40,7 +41,7 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
     return this._baseClass;
   }
 
-  boot() {
+  boot(): void {
     this._base();
 
     this.on("fetch", (obEvent: Record<string, any>) => {
@@ -51,7 +52,7 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
     });
   }
 
-  getRouteResolver() {
+  getRouteResolver(): RouteResolver {
     return Base.$resolve;
   }
 
@@ -196,7 +197,7 @@ export default class Collection<A extends Model = Model> extends BaseCollection<
    * @param {Object} filters JSON object to add filters param
    * @returns {Collection}
    */
-  filterBy<T extends Collection>(this: T, filters: object): T {
+  filterBy<T extends Collection>(this: T, filters: Record<string, any>): T {
     if (isEmpty(filters) || !isPlainObject(filters)) {
       return this;
     }

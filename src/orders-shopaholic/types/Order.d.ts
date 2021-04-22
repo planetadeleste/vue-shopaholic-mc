@@ -1,3 +1,6 @@
+import { UserAddressData } from "@bit/planetadeleste.shopaholic-mc.shopaholic/types/UserAddress";
+import { RequestOptions, Response } from "vue-mc";
+
 export interface OrderData {
   id: number;
   currency_id: number;
@@ -39,4 +42,34 @@ export interface OrderData {
   status: number;
   total_price_value: number;
   weight: number;
+
+  store(
+    options: RequestOptions = {}
+  ): Promise<Response<MakeOrderResponseData | any> | null>;
+}
+
+export interface OrderRequestOrderData {
+  payment_method_id?: number;
+  shipping_type_id?: number;
+  shipping_price?: number;
+  property?: Record<string, any>;
+}
+
+export interface OrderRequestUserData {
+  [key: string]: any;
+  email: string;
+  name: string;
+}
+
+export interface OrderRequestData {
+  order: OrderRequestOrderData;
+  user: OrderRequestUserData;
+  shipping_address: UserAddressData;
+  billing_address: UserAddressData;
+}
+
+export interface MakeOrderResponseData {
+  id: number;
+  number: string;
+  key: string;
 }

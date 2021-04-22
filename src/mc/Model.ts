@@ -1,6 +1,11 @@
 import Vue from "vue";
 import Base from "./Base";
-import { Model as BaseModel, RequestOptions, Response } from "vue-mc";
+import {
+  Model as BaseModel,
+  RequestOptions,
+  Response,
+  RouteResolver,
+} from "vue-mc";
 import { AxiosRequestConfig } from "axios";
 import Request from "./Request";
 import { serialize } from "object-to-formdata";
@@ -9,7 +14,6 @@ import {
   isBoolean,
   set,
   isPlainObject,
-  isObjectLike,
   has,
   isNil,
   unionBy,
@@ -25,7 +29,7 @@ import {
   isObject,
   forEach,
   defaultTo,
-  assign
+  assign,
 } from "lodash";
 
 type Constructor<T> = new (...args: any[]) => T;
@@ -50,7 +54,7 @@ export default class Model extends BaseModel {
     return this._baseClass;
   }
 
-  boot() {
+  boot(): void {
     this._base();
     Vue.set(this, "_relations", {});
     Vue.set(this, "_accessors", {});
@@ -69,7 +73,7 @@ export default class Model extends BaseModel {
     });
   }
 
-  get relations() {
+  get relations(): Record<string, Constructor<Model>> {
     return this._relations;
   }
 
@@ -107,7 +111,7 @@ export default class Model extends BaseModel {
     return this;
   }
 
-  getRelation(name: string) {
+  getRelation(name: string): Constructor<Model> {
     return this._relations[name];
   }
 
@@ -123,7 +127,7 @@ export default class Model extends BaseModel {
 
       Object.defineProperty(this, item, {
         get: () => this.getRelation(name),
-        set: relation => this.setRelation(name, config, relation)
+        set: (relation) => this.setRelation(name, config, relation),
       });
 
       if (exist) {
@@ -135,7 +139,7 @@ export default class Model extends BaseModel {
     return this;
   }
 
-  assignRelations() {
+  assignRelations(): void {
     each(this.definedRelations(), (config, name) => {
       this.registerRelation(name, config);
     });
@@ -151,7 +155,7 @@ export default class Model extends BaseModel {
    * @return {boolean}
    * @memberof Model
    */
-  isDirty(sKey?: string) {
+  isDirty(sKey?: string): boolean {
     const arChanged = this.changed();
     if (!arChanged) {
       return false;
@@ -188,7 +192,7 @@ export default class Model extends BaseModel {
     });
   }
 
-  getRouteResolver() {
+  getRouteResolver(): RouteResolver {
     return Base.$resolve;
   }
 
@@ -316,7 +320,7 @@ export default class Model extends BaseModel {
    *
    * @returns {Promise}
    */
-  store(options: RequestOptions = {}) {
+  store(options: RequestOptions = {}): Promise<Response<any> | null> {
     let data = defaultTo(options.data, this.getSaveData());
 
     if (this.hasFileUpload(data)) {

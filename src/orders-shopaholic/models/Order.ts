@@ -3,7 +3,7 @@ import { toNumber } from "lodash";
 import { OrderData } from "../types/Order";
 
 class Order extends Model {
-  defaults() {
+  defaults(): Record<string, any> {
     return {
       id: null,
       currency_id: null,
@@ -40,26 +40,26 @@ class Order extends Model {
       shipping_type_id: null,
       status: null,
       total_price_value: null,
-      weight: null
+      weight: null,
     };
   }
 
-  mutations() {
+  mutations(): Record<string, any> {
     return {
-      id: (id: string) => toNumber(id) || null
+      id: (id: string) => toNumber(id) || null,
     };
   }
 
-  validation() {
+  validation(): Record<string, any> {
     return {};
   }
 
-  routes() {
+  routes(): Record<string, any> {
     return {
       fetch: "orders.show",
       create: "orders.create",
       update: "orders.update",
-      delete: "orders.destroy"
+      delete: "orders.destroy",
     };
   }
 }

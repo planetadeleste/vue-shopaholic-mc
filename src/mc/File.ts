@@ -18,7 +18,7 @@ import { FileData } from "./types/File";
  * @property {string} description
  */
 class File extends Model {
-  defaults() {
+  defaults(): Record<string, any> {
     return {
       disk_name: null,
       thumb: null,
@@ -26,21 +26,21 @@ class File extends Model {
       file_name: null,
       ext: null,
       title: null,
-      description: null
+      description: null,
     };
   }
 
-  options() {
+  options(): Record<string, any> {
     return {
       methods: {
-        resize: "GET"
-      }
+        resize: "GET",
+      },
     };
   }
 
-  routes() {
+  routes(): Record<string, any> {
     return {
-      resize: "files.resize"
+      resize: "files.resize",
     };
   }
 

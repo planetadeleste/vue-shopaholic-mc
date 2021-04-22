@@ -29,3 +29,7 @@ export interface ResponseLoginRegisterData {
   token: string;
   user?: ProfileData;
 }
+
+export interface ResponseProfileAvatarData {
+  avatar: string | null;
+}

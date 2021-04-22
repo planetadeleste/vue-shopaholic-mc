@@ -9,15 +9,15 @@ export default class Base {
   static $authModule: VuexModule;
   static $http: AxiosStatic;
 
-  get flashModule() {
+  get flashModule(): VuexModule {
     return Base.$flashModule;
   }
 
-  get loadingModule() {
+  get loadingModule(): VuexModule {
     return Base.$loadingModule;
   }
 
-  get authModule() {
+  get authModule(): VuexModule {
     return Base.$authModule;
   }
 }
