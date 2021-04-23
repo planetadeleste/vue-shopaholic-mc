@@ -1,6 +1,7 @@
 import { Model } from "@bit/planetadeleste.shopaholic-mc.base";
 import { toNumber } from "lodash";
-import { OrderData } from "../types/Order";
+import { Response } from "vue-mc";
+import { OrderData, OrderPositionData } from "../types/Order";
 
 class Order extends Model {
   defaults(): Record<string, any> {
@@ -54,13 +55,31 @@ class Order extends Model {
     return {};
   }
 
+  options(): Record<string, any> {
+    return {
+      methods: {
+        position: "GET",
+      },
+    };
+  }
+
   routes(): Record<string, any> {
     return {
       fetch: "orders.show",
       create: "orders.create",
       update: "orders.update",
       delete: "orders.destroy",
+      position: "orders.position",
     };
+  }
+
+  async loadPosition(): Promise<void> {
+    const obResponse: Response<
+      OrderPositionData[]
+    > = await this.createCustomRequest("position", ["secret_key"]);
+
+    const obPosition = obResponse.getData().data;
+    this.set("order_position", obPosition);
   }
 }
 
