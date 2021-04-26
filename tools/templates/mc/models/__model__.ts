@@ -3,23 +3,23 @@ import { toNumber } from "lodash";
 import { __model__Data } from "../types/__model__";
 
 class __model__ extends Model {
-  defaults() {
+  defaults(): Record<string, any> {
     return {
       id: null
     };
   }
 
-  mutations() {
+  mutations(): Record<string, any> {
     return {
       id: (id: string) => toNumber(id) || null
     };
   }
 
-  validation() {
+  validation(): Record<string, any> {
     return {};
   }
 
-  routes() {
+  routes(): Record<string, any> {
     return {
       fetch: "__route__(noCase).show",
       create: "__route__(noCase).store",

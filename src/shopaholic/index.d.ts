@@ -18,6 +18,6 @@ declare module "@bit/planetadeleste.shopaholic-mc.shopaholic/types" {
     ProductData,
     ProfileData,
     UserData,
-    UserAddressData
+    UserAddressData,
   };
 }

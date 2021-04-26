@@ -1,0 +1,50 @@
+{
+  "env": {},
+  "overrides": {
+    "*": {
+      "dependencies": {
+        "@bit/planetadeleste.shopaholic-mc.base": "^1.0.69",
+        "@bit/planetadeleste.shopaholic.types.base": "-",
+        "@bit/planetadeleste.shopaholic.types.api": "-",
+        "axios": "-",
+        "vue": "-",
+        "vuex-module-decorators": "-"
+      },
+      "peerDependencies": {
+        "axios": "+",
+        "vue": "+",
+        "vuex-module-decorators": "+"
+      },
+      "devDependencies": {
+        "@bit/planetadeleste.shopaholic.types.base": "+",
+        "@bit/planetadeleste.shopaholic.types.api": "+"
+      },
+      "propagate": true
+    },
+    "base": {
+      "dependencies": {
+        "@bit/planetadeleste.shopaholic-mc.types.vue-mc": "-",
+        "@bit/planetadeleste.shopaholic.types.api": "-",
+        "axios": "-",
+        "vue": "-",
+        "vuex-module-decorators": "-"
+      },
+      "peerDependencies": {
+        "axios": "+",
+        "vue": "+",
+        "vuex-module-decorators": "+"
+      },
+      "devDependencies": {
+        "@bit/planetadeleste.shopaholic-mc.types.vue-mc": "+",
+        "@bit/planetadeleste.shopaholic.types.base": "+",
+        "@bit/planetadeleste.shopaholic.types.api": "+"
+      },
+      "compilerOptions": {
+        "rootDirs": ["src/mc"]
+      },
+      "propagate": false
+    }
+  },
+  "componentsDefaultDirectory": "components/{name}",
+  "packageManager": "yarn"
+}
