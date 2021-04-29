@@ -1,52 +1,48 @@
 import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
 import { required, string } from "vue-mc/validation";
+import { Response } from "vue-mc";
 import { toNumber, pick } from "lodash";
+import { CountryData } from "../types/Country";
+import { StateData } from "../types/State";
 
-export default class Country extends Model {
-  id!: number;
-  name!: string;
-  code!: string;
-  is_pinned!: boolean;
-  is_enabled!: boolean;
-  is_default!: boolean;
-
-  defaults() {
+class Country extends Model {
+  defaults(): Record<string, any> {
     return {
       id: null,
-      name: null
+      name: null,
     };
   }
 
-  mutations() {
+  mutations(): Record<string, any> {
     return {
       id: (id: string) => toNumber(id) || null,
       name: [cleanStr],
-      code: [cleanStr]
+      code: [cleanStr],
     };
   }
 
-  validation() {
+  validation(): Record<string, any> {
     return {
       name: required.and(string),
-      code: required.and(string)
+      code: required.and(string),
     };
   }
 
-  options() {
+  options(): Record<string, any> {
     return {
       methods: {
-        states: "GET"
-      }
+        states: "GET",
+      },
     };
   }
 
-  routes() {
+  routes(): Record<string, any> {
     return {
       fetch: "countries.show",
       create: "countries.store",
       update: "countries.update",
       delete: "countries.destroy",
-      states: "countries.states"
+      states: "countries.states",
     };
   }
 
@@ -56,7 +52,7 @@ export default class Country extends Model {
    * @route api/v1/countries/{id}/states
    * @returns {Promise<Response>}
    */
-  getStates() {
+  getStates(): Promise<Response<StateData[]>> {
     const method = this.getOption("methods.states");
     const route = this.getRoute("states");
     const params = pick(this.getRouteParameters(), "id");
@@ -66,3 +62,6 @@ export default class Country extends Model {
     return this.createRequest({ method, url, data }).send();
   }
 }
+
+interface Country extends Model, CountryData {}
+export default Country;

@@ -125,7 +125,7 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "planetadeleste.shopaholic-mc/location@1.0.42": {
+    "planetadeleste.shopaholic-mc/location@1.0.44": {
         "files": [
             {
                 "relativePath": "src/location/collections/Countries.ts",
@@ -141,6 +141,11 @@
                 "relativePath": "src/location/collections/Towns.ts",
                 "test": false,
                 "name": "Towns.ts"
+            },
+            {
+                "relativePath": "src/location/index.d.ts",
+                "test": false,
+                "name": "index.d.ts"
             },
             {
                 "relativePath": "src/location/index.ts",
@@ -161,6 +166,21 @@
                 "relativePath": "src/location/models/Town.ts",
                 "test": false,
                 "name": "Town.ts"
+            },
+            {
+                "relativePath": "src/location/types/Country.d.ts",
+                "test": false,
+                "name": "Country.d.ts"
+            },
+            {
+                "relativePath": "src/location/types/State.d.ts",
+                "test": false,
+                "name": "State.d.ts"
+            },
+            {
+                "relativePath": "src/location/types/Town.d.ts",
+                "test": false,
+                "name": "Town.d.ts"
             }
         ],
         "mainFile": "src/location/index.ts",

@@ -43,6 +43,25 @@
         "rootDirs": ["src/mc"]
       },
       "propagate": false
+    },
+    "location": {
+      "types": "index.d.ts",
+      "dependencies": {
+        "@bit/planetadeleste.shopaholic-mc.base": "-",
+        "lodash": "-",
+        "vue-mc": "-"
+      },
+      "peerDependencies": {
+        "@bit/planetadeleste.shopaholic-mc.base": "+",
+        "vue-mc": "+",
+        "axios": "-",
+        "vue": "-",
+        "vuex-module-decorators": "-"
+      },
+      "devDependencies": {
+        "@bit/planetadeleste.shopaholic.types.base": "-",
+        "@bit/planetadeleste.shopaholic.types.api": "-"
+      }
     }
   },
   "componentsDefaultDirectory": "components/{name}",
