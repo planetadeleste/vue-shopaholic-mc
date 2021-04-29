@@ -1,8 +1,9 @@
 import { Model } from "@bit/planetadeleste.shopaholic-mc.base";
 import { AuthData } from "../types/Auth";
+import { Response } from "vue-mc";
 
 class Auth extends Model {
-  options() {
+  options(): Record<string, any> {
     return {
       methods: {
         check: "POST",
@@ -13,12 +14,12 @@ class Auth extends Model {
         csrf: "GET",
         restore_password: "POST",
         reset_password: "POST",
-        check_reset_code: "GET"
-      }
+        check_reset_code: "GET",
+      },
     };
   }
 
-  routes() {
+  routes(): Record<string, any> {
     return {
       check: "auth.check",
       login: "auth.login",
@@ -28,28 +29,28 @@ class Auth extends Model {
       csrf: "auth.csrf_token",
       restore_password: "auth.restore_password",
       reset_password: "auth.reset_password",
-      check_reset_code: "auth.check_reset_code"
+      check_reset_code: "auth.check_reset_code",
     };
   }
 
   /**
    * Validate logged user in API
    */
-  async check() {
+  async check(): Promise<Response> {
     return await this.createCustomRequest("check");
   }
 
   /**
    * Get API CSRF code
    */
-  async csrf() {
+  async csrf(): Promise<Response> {
     return await this.createCustomRequest("csrf");
   }
 
   /**
    * Refresh API token
    */
-  async refresh() {
+  async refresh(): Promise<Response> {
     return await this.createCustomRequest("refresh");
   }
 
@@ -59,7 +60,7 @@ class Auth extends Model {
    * @param {string} login
    * @param {string} password
    */
-  async login(login: string, password: string) {
+  async login(login: string, password: string): Promise<Response> {
     const data = { email: login, password: password };
 
     return await this.createCustomRequest("login", data);
@@ -68,7 +69,7 @@ class Auth extends Model {
   /**
    * Close (invalidate) session from API
    */
-  async logout() {
+  async logout(): Promise<Response> {
     const sToken = localStorage.getItem("access_token");
     const data = { token: sToken };
 
@@ -84,7 +85,7 @@ class Auth extends Model {
    *
    * @param {Record<string, any>} obData
    */
-  async register(obData: Record<string, any>) {
+  async register(obData: Record<string, any>): Promise<Response> {
     return await this.createCustomRequest("register", obData);
   }
 
@@ -93,9 +94,9 @@ class Auth extends Model {
    *
    * @param {string} sEmail User email
    */
-  async restorePassword(sEmail: string) {
+  async restorePassword(sEmail: string): Promise<Response> {
     return await this.createCustomRequest("restore_password", {
-      email: sEmail
+      email: sEmail,
     });
   }
 
@@ -106,11 +107,15 @@ class Auth extends Model {
    * @param {string} sPass New password
    * @param {string} sPassConfirm Confirmation password, must be the same of password
    */
-  async resetPassword(sCode: string, sPass: string, sPassConfirm: string) {
+  async resetPassword(
+    sCode: string,
+    sPass: string,
+    sPassConfirm: string
+  ): Promise<Response> {
     const obData = {
       slug: sCode,
       password: sPass,
-      password_confirmation: sPassConfirm
+      password_confirmation: sPassConfirm,
     };
     return await this.createCustomRequest("register", obData);
   }
@@ -120,7 +125,7 @@ class Auth extends Model {
    *
    * @param {string} sCode Code to reset password, received by email
    */
-  async checkResetCode(sCode: string) {
+  async checkResetCode(sCode: string): Promise<Response> {
     const obData = { slug: sCode };
     return await this.createCustomRequest("check_reset_code", obData);
   }

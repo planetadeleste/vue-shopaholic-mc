@@ -3,7 +3,7 @@ import { UserAddressData } from "../types/UserAddress";
 import { toNumber } from "lodash";
 
 class UserAddress extends Model {
-  defaults() {
+  defaults(): Record<string, any> {
     return {
       id: null,
       user_id: null,
@@ -20,13 +20,13 @@ class UserAddress extends Model {
       address2: null,
       postcode: null,
       created_at: null,
-      updated_at: null
+      updated_at: null,
     };
   }
 
-  mutations() {
+  mutations(): Record<string, any> {
     return {
-      id: (id: string) => toNumber(id) || null
+      id: (id: string) => toNumber(id) || null,
     };
   }
 }

@@ -2,13 +2,13 @@ import { Collection } from "@bit/planetadeleste.shopaholic-mc.base";
 import Group from "../models/Group";
 
 export default class Groups extends Collection<Group> {
-  model() {
+  model(): typeof Group {
     return Group;
   }
 
-  routes() {
+  routes(): Record<string, any> {
     return {
-      fetch: "groups.index"
+      fetch: "groups.index",
     };
   }
 }

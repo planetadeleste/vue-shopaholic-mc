@@ -62,6 +62,9 @@
         "@bit/planetadeleste.shopaholic.types.base": "-",
         "@bit/planetadeleste.shopaholic.types.api": "-"
       }
+    },
+    "shopaholic": {
+      "types": "index.d.ts"
     }
   },
   "componentsDefaultDirectory": "components/{name}",

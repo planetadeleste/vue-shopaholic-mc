@@ -2,13 +2,13 @@ import { Collection } from "@bit/planetadeleste.shopaholic-mc.base";
 import Brand from "../models/Brand";
 
 export default class Brands extends Collection<Brand> {
-  model() {
+  model(): typeof Brand {
     return Brand;
   }
 
-  routes() {
+  routes(): Record<string, any> {
     return {
-      fetch: "brands.index"
+      fetch: "brands.index",
     };
   }
 }

@@ -4,35 +4,35 @@ import { required, string } from "vue-mc/validation";
 import { GroupData } from "../types/Group";
 
 class Group extends Model {
-  defaults() {
+  defaults(): Record<string, any> {
     return {
       id: null,
       name: null,
       code: null,
-      description: null
+      description: null,
     };
   }
 
-  mutations() {
+  mutations(): Record<string, any> {
     return {
       id: (id: string) => toNumber(id) || null,
       name: [cleanStr],
-      code: [cleanStr]
+      code: [cleanStr],
     };
   }
 
-  validation() {
+  validation(): Record<string, any> {
     return {
-      name: required.and(string)
+      name: required.and(string),
     };
   }
 
-  routes() {
+  routes(): Record<string, any> {
     return {
       fetch: "groups.show",
       create: "groups.store",
       update: "groups.update",
-      delete: "groups.destroy"
+      delete: "groups.destroy",
     };
   }
 }

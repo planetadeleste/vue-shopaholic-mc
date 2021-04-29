@@ -28,7 +28,7 @@ import { OfferData } from "../types/Offer";
  * @property {array} property
  */
 class Offer extends Model {
-  defaults() {
+  defaults(): Record<string, any> {
     return {
       id: null,
       product_id: null,
@@ -46,11 +46,11 @@ class Offer extends Model {
       description: null,
       preview_image: null,
       images: [],
-      property: []
+      property: [],
     };
   }
 
-  mutations() {
+  mutations(): Record<string, any> {
     return {
       id: (id: string) => toNumber(id) || null,
       name: [cleanStr],
@@ -68,16 +68,16 @@ class Offer extends Model {
           return this.old_price_value;
         }
         return sPrice;
-      }
+      },
     };
   }
 
-  routes() {
+  routes(): Record<string, any> {
     return {
       fetch: "offers.show",
       create: "offers.store",
       update: "offers.update",
-      delete: "offers.destroy"
+      delete: "offers.destroy",
     };
   }
 }

@@ -1,15 +1,9 @@
 import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
+import { OfferData } from "@bit/planetadeleste.shopaholic-mc.shopaholic/types/Offer";
 import { toNumber } from "lodash";
+import { Response } from "vue-mc";
 import { required, string } from "vue-mc/validation";
 import { ProductData } from "../types/Product";
-
-/**
- * @typedef { import("@bit/planetadeleste.shopaholic.types.base").OCFileData } OCFileData
- */
-
-/**
- * @typedef { import("@bit/planetadeleste.shopaholic-mc.shopaholic/types/Offer").OfferData } OfferData
- */
 
 /**
  * @description
@@ -38,7 +32,7 @@ import { ProductData } from "../types/Product";
  * @property {string} code
  */
 class Product extends Model {
-  defaults() {
+  defaults(): Record<string, any> {
     return {
       id: null,
       category_id: null,
@@ -55,62 +49,62 @@ class Product extends Model {
       updated_at: null,
       external_id: null,
       description: null,
-      code: null
+      code: null,
     };
   }
 
-  mutations() {
+  mutations(): Record<string, any> {
     return {
       id: (id: string) => toNumber(id) || null,
       name: [cleanStr],
       slug: [cleanStr],
       description: [cleanStr],
-      preview_text: [cleanStr]
+      preview_text: [cleanStr],
     };
   }
 
-  validation() {
+  validation(): Record<string, any> {
     return {
-      name: required.and(string)
+      name: required.and(string),
     };
   }
 
-  options() {
+  options(): Record<string, any> {
     return {
       methods: {
         stats: "GET",
-        offers: "GET"
-      }
+        offers: "GET",
+      },
     };
   }
 
-  routes() {
+  routes(): Record<string, any> {
     return {
       fetch: "products.show",
       create: "products.store",
       update: "products.update",
       delete: "products.destroy",
       stats: "products.stats",
-      offers: "products.offers"
+      offers: "products.offers",
     };
   }
 
-  async stats() {
+  async stats(): Promise<Response> {
     return await this.createCustomRequest("stats", []);
   }
 
   /**
    * Get offers from server
    */
-  async getOffers() {
+  async getOffers(): Promise<Response<OfferData[]>> {
     return await this.createCustomRequest("offers", ["id"]);
   }
 
   /**
    * Reload offers from server
    */
-  async updateOffers() {
-    const obOffers = await this.getOffers().then(obResponse =>
+  async updateOffers(): Promise<void> {
+    const obOffers = await this.getOffers().then((obResponse) =>
       obResponse.getData()
     );
     if (obOffers && obOffers.data) {

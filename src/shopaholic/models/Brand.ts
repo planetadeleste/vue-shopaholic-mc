@@ -4,7 +4,7 @@ import { required, string } from "vue-mc/validation";
 import { BrandData } from "../types/Brand";
 
 class Brand extends Model {
-  defaults() {
+  defaults(): Record<string, any> {
     return {
       id: null,
       name: null,
@@ -18,32 +18,32 @@ class Brand extends Model {
       updated_at: null,
       external_id: null,
       description: null,
-      sort_order: null
+      sort_order: null,
     };
   }
 
-  mutations() {
+  mutations(): Record<string, any> {
     return {
       id: (id: string) => toNumber(id) || null,
       name: [cleanStr],
       slug: [cleanStr],
       description: [cleanStr],
-      preview_text: [cleanStr]
+      preview_text: [cleanStr],
     };
   }
 
-  validation() {
+  validation(): Record<string, any> {
     return {
-      name: required.and(string)
+      name: required.and(string),
     };
   }
 
-  routes() {
+  routes(): Record<string, any> {
     return {
       fetch: "brands.show",
       create: "brands.store",
       update: "brands.update",
-      delete: "brands.destroy"
+      delete: "brands.destroy",
     };
   }
 }

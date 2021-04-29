@@ -1,27 +1,29 @@
 import { Collection } from "@bit/planetadeleste.shopaholic-mc.base";
+import { Response } from "vue-mc";
 import Category from "../models/Category";
+import { CategoryData } from "../types/Category";
 
 export default class Categories extends Collection<Category> {
-  model() {
+  model(): typeof Category {
     return Category;
   }
 
-  options() {
+  options(): Record<string, any> {
     return {
       methods: {
-        tree: "GET"
-      }
+        tree: "GET",
+      },
     };
   }
 
-  routes() {
+  routes(): Record<string, any> {
     return {
       fetch: "categories.index",
-      tree: "categories.tree"
+      tree: "categories.tree",
     };
   }
 
-  tree() {
+  tree(): Promise<Response<CategoryData[]>> {
     return this.createCustomRequest("tree");
   }
 

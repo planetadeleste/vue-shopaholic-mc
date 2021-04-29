@@ -2,13 +2,13 @@ import { Collection } from "@bit/planetadeleste.shopaholic-mc.base";
 import User from "../models/User";
 
 export default class Users extends Collection<User> {
-  model() {
+  model(): typeof User {
     return User;
   }
 
-  routes() {
+  routes(): Record<string, any> {
     return {
-      fetch: "users.index"
+      fetch: "users.index",
     };
   }
 }

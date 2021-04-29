@@ -5,7 +5,7 @@ import Categories from "../collections/Categories";
 import { CategoryData } from "../types/Category";
 
 class Category extends Model {
-  defaults() {
+  defaults(): Record<string, any> {
     return {
       id: null,
       parent_id: null,
@@ -19,40 +19,40 @@ class Category extends Model {
       created_at: null,
       updated_at: null,
       description: null,
-      external_id: null
+      external_id: null,
     };
   }
 
-  defineRelations() {
+  defineRelations(): Record<string, any> {
     return {
       children: {
-        class: Categories
-      }
+        class: Categories,
+      },
     };
   }
 
-  mutations() {
+  mutations(): Record<string, any> {
     return {
       id: (id: string) => toNumber(id) || null,
       name: [cleanStr],
       slug: [cleanStr],
       description: [cleanStr],
-      preview_text: [cleanStr]
+      preview_text: [cleanStr],
     };
   }
 
-  validation() {
+  validation(): Record<string, any> {
     return {
-      name: required.and(string)
+      name: required.and(string),
     };
   }
 
-  routes() {
+  routes(): Record<string, any> {
     return {
       fetch: "categories.show",
       create: "categories.store",
       update: "categories.update",
-      delete: "categories.destroy"
+      delete: "categories.destroy",
     };
   }
 }

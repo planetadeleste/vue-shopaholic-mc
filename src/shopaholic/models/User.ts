@@ -1,5 +1,6 @@
 import { Model, cleanStr } from "@bit/planetadeleste.shopaholic-mc.base";
 import { toNumber, chain } from "lodash";
+import { Response } from "vue-mc";
 import { required, string, email } from "vue-mc/validation";
 import { UserData } from "../types/User";
 
@@ -69,7 +70,7 @@ class User extends Model {
     };
   }
 
-  async stats() {
+  async stats(): Promise<Response> {
     return await this.createCustomRequest("stats");
   }
 }

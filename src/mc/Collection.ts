@@ -87,11 +87,11 @@ export default class Collection<
    * @param {Record<string, any>} [obData]
    * @returns {Promise<Response>}
    */
-  createCustomRequest(
+  async createCustomRequest(
     sMethod: string,
     sRoute?: string | Record<string, any>,
     obData?: Record<string, any>
-  ): Promise<Response | null | void> {
+  ): Promise<Response> {
     if (!isString(sRoute)) {
       if (isPlainObject(sRoute)) {
         obData = sRoute;
@@ -105,14 +105,13 @@ export default class Collection<
     const params = this.getRouteParameters();
     const url = this.getURL(route, params);
 
-    return this.createRequest({ method, url, data: obData })
-      .send()
-      .then((response): void => {
-        this.onFetchSuccess(response);
-      })
-      .catch((error: ResponseError): void => {
-        this.onFetchFailure(error);
-      });
+    return await this.createRequest({ method, url, data: obData }).send();
+    // .then((response): void => {
+    //   this.onFetchSuccess(response);
+    // })
+    // .catch((error: ResponseError): void => {
+    //   this.onFetchFailure(error);
+    // });
   }
 
   getModelsFromResponse(response: Response): any {

@@ -16,7 +16,7 @@ import {
 type RecordProfileData = UserRegisterOptions & Record<string, any>;
 
 class Profile extends Model {
-  defaults() {
+  defaults(): Record<string, any> {
     return {
       id: null,
       groups: [],
@@ -35,7 +35,7 @@ class Profile extends Model {
     };
   }
 
-  mutations() {
+  mutations(): Record<string, any> {
     return {
       id: (id: string) => _.toNumber(id) || null,
       name: [cleanStr],
@@ -43,7 +43,7 @@ class Profile extends Model {
     };
   }
 
-  accessors() {
+  accessors(): Record<string, any> {
     return {
       fullName: () => {
         return _.chain([this.name, this.middle_name, this.last_name])
@@ -54,14 +54,14 @@ class Profile extends Model {
     };
   }
 
-  validation() {
+  validation(): Record<string, any> {
     return {
       name: required.and(string),
       email: required.and(email),
     };
   }
 
-  options() {
+  options(): Record<string, any> {
     return {
       methods: {
         avatar: "GET",
@@ -77,7 +77,7 @@ class Profile extends Model {
     };
   }
 
-  routes() {
+  routes(): Record<string, any> {
     return {
       fetch: "profile.show",
       create: "profile.store",
@@ -166,7 +166,7 @@ class Profile extends Model {
     return await this.createCustomRequest("register", obData);
   }
 
-  async logout() {
+  async logout(): Promise<Response> {
     const sToken = localStorage.getItem("access_token");
     if (!sToken) {
       return Promise.reject("token_not_provided");
