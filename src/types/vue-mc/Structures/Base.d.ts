@@ -18,9 +18,11 @@ declare abstract class Base {
   static readonly REQUEST_CONTINUE = RequestOperation.REQUEST_CONTINUE;
   static readonly REQUEST_REDUNDANT = RequestOperation.REQUEST_REDUNDANT;
   static readonly REQUEST_SKIP = RequestOperation.REQUEST_SKIP;
+
   readonly _uid: string;
-  readonly _listeners;
-  readonly _options;
+  private readonly _listeners: Record<string, Listener[]>;
+  private readonly _options: Record<string, any>;
+  
   protected constructor(options: Options);
   /**
    * @returns {string} The class name of this instance.
