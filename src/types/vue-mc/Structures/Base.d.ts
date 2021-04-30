@@ -9,7 +9,7 @@ import { BaseResponse } from "../HTTP/BaseResponse";
 export declare enum RequestOperation {
   REQUEST_CONTINUE = 0,
   REQUEST_REDUNDANT = 1,
-  REQUEST_SKIP = 2
+  REQUEST_SKIP = 2,
 }
 /**
  * Base class for all things common between Model and Collection.
@@ -19,8 +19,8 @@ declare abstract class Base {
   static readonly REQUEST_REDUNDANT = RequestOperation.REQUEST_REDUNDANT;
   static readonly REQUEST_SKIP = RequestOperation.REQUEST_SKIP;
   readonly _uid: string;
-  private readonly _listeners;
-  private readonly _options;
+  readonly _listeners;
+  readonly _options;
   protected constructor(options: Options);
   /**
    * @returns {string} The class name of this instance.
@@ -184,7 +184,7 @@ declare abstract class Base {
   /**
    * @returns {Object} Default HTTP methods.
    */
-  getDefaultMethods(): object;
+  getDefaultMethods(): Record<string, any>;
   /**
    * @returns {string} HTTP method to use when making a save request.
    */

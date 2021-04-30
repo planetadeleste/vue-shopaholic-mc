@@ -1,4 +1,5 @@
-const fs = require("fs");
+/* eslint-disable no-undef */
+const { writeFile } = require("fs");
 const dirTree = require("directory-tree");
 const { chain, map, get, join, template, templateSettings } = require("lodash");
 
@@ -52,7 +53,7 @@ const writeImportExport = (sPath, sPlugin) => {
     plugin: sPlugin,
   });
 
-  fs.writeFile(`src/${sPath}/index.ts`, sValue, (err) => {
+  writeFile(`src/${sPath}/index.ts`, sValue, (err) => {
     // throws an error, you could also catch it here
     if (err) throw err;
 

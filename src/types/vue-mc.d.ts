@@ -1,7 +1,7 @@
 declare module "vue-mc" {
   import {
     Model,
-    Collection
+    Collection,
   } from "@bit/planetadeleste.shopaholic-mc.types.vue-mc";
   export { Model, Collection };
   export {
@@ -9,7 +9,7 @@ declare module "vue-mc" {
     AttributesValidationErrors,
     ValidationResultError,
     ValidationResult,
-    ValidationTask
+    ValidationTask,
   } from "@bit/planetadeleste.shopaholic-mc.types.vue-mc";
   export { Predicate } from "@bit/planetadeleste.shopaholic-mc.types.vue-mc";
 
@@ -20,7 +20,7 @@ declare module "vue-mc" {
     RequestError,
     ProxyResponse,
     ValidationError,
-    Result
+    Result,
   } from "@bit/planetadeleste.shopaholic-mc.types.vue-mc";
 
   export {
@@ -30,7 +30,7 @@ declare module "vue-mc" {
     RequestError,
     ProxyResponse,
     ValidationError,
-    Result
+    Result,
   };
 
   export * from "@bit/planetadeleste.shopaholic-mc.types.vue-mc/HTTP/BaseResponse";

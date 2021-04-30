@@ -14,11 +14,11 @@ declare class Model extends Base {
   readonly saving: boolean;
   readonly deleting: boolean;
   readonly fatal: boolean;
-  private readonly _attributes;
-  private readonly _collections;
-  private readonly _reference;
-  private _mutations;
-  private readonly _errors;
+  readonly _attributes;
+  readonly _collections;
+  readonly _reference;
+  readonly _errors;
+  _mutations;
   /**
    * A convenience wrapper around the model's attributes that are saved.
    * This is similar to the `saved` method, but instead of accessing a single

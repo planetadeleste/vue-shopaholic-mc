@@ -13,9 +13,9 @@ declare class Collection<A extends Model = Model> extends Base {
   readonly saving: boolean;
   readonly deleting: boolean;
   readonly fatal: boolean;
-  private readonly _attributes;
-  private readonly _page;
-  private readonly _registry;
+  readonly _attributes;
+  readonly _page;
+  readonly _registry;
   /**
    * Accessor to support Array.length semantics.
    */
