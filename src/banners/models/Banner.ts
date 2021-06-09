@@ -6,6 +6,25 @@ class Banner extends Model {
   defaults(): Record<string, any> {
     return {
       id: null,
+      size_id: null,
+      product_id: null,
+      created_at: null,
+      updated_at: null,
+      title: null,
+      name: null,
+      subtitle: null,
+      pretitle: null,
+      page: null,
+      url: null,
+      offer: null,
+      button_label: null,
+      bottom_caption: null,
+      icon: null,
+      link_type: null,
+      text_pos: null,
+      image: null,
+      background: null,
+      active: null
     };
   }
 

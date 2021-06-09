@@ -1,5 +1,7 @@
 {
   "env": {},
+  "componentsDefaultDirectory": "components/{name}",
+  "packageManager": "yarn",
   "overrides": {
     "*": {
       "dependencies": {
@@ -45,7 +47,6 @@
       "propagate": false
     },
     "location": {
-      "types": "types/index.d.ts",
       "dependencies": {
         "@bit/planetadeleste.shopaholic-mc.base": "-",
         "lodash": "-",
@@ -63,13 +64,7 @@
         "@bit/planetadeleste.shopaholic.types.api": "-"
       }
     },
-    "shopaholic": {
-      "types": "types/index.d.ts"
-    },
-    "banners": {
-      "types": "types/index.d.ts"
-    }
-  },
-  "componentsDefaultDirectory": "components/{name}",
-  "packageManager": "yarn"
+    "shopaholic": {},
+    "banners": {}
+  }
 }

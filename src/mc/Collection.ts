@@ -2,7 +2,6 @@ import {
   Collection as BaseCollection,
   Model,
   Response,
-  ResponseError,
   RouteResolver,
 } from "vue-mc";
 import { AxiosRequestConfig } from "axios";

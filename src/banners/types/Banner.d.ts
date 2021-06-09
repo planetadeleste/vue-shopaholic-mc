@@ -1,6 +1,9 @@
 import { ProductData } from "@bit/planetadeleste.shopaholic-mc.shopaholic/types/Product";
 import { SizeData } from "./Size";
 
+export type LinkType = "product" | "page" | "url" | "none";
+export type TextPosition = "left" | "right" | "center";
+
 export interface BannerData {
   id: number;
   size_id: number;
@@ -10,6 +13,7 @@ export interface BannerData {
   size: SizeData;
   product: ProductData;
   title: string;
+  name: string;
   subtitle: string;
   pretitle: string;
   page: string;
@@ -22,8 +26,8 @@ export interface BannerData {
   escape_subtitle: string;
   strip_subtitle: string;
   icon: string;
-  link_type: string;
-  text_pos: string;
+  link_type: LinkType;
+  text_pos: TextPosition;
   image: string;
   background: string;
 }

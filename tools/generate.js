@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const { get, find, camelCase, startCase, kebabCase } = require("lodash");
 const { generateTemplateFiles } = require("generate-template-files");
 const { writeImportExport } = require("./writeIndex");

@@ -6,6 +6,12 @@ class Size extends Model {
   defaults(): Record<string, any> {
     return {
       id: null,
+      width: null,
+      height: null,
+      percent_ratio: null,
+      name: null,
+      image: null,
+      size: null,
     };
   }
 
